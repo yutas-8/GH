@@ -1,24 +1,45 @@
-# README
+# gh
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+- 社内で、ありがとうを送り合う機能を導入して褒め合う社風作りを行う。互いを褒め合い、励まし合う環境設計により離職者を減らし、会社の発展（組織の活性化）を促すツール
+- 社内での情報共有のスピード UP や社内での考え方などの統一を図りやする。コミュニケーション機会を増やしチーム力の結束力 UP させる。伝達ミス漏れを減り生産性 UP のキッカケを促すツール
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+- 社内組織活性化・情報共有ツール、
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+一番は対面で褒め合う、励まし合う言葉掛けがもっとも良い。それにプラス α としてこのツールが生きてくる。「ありがとう」などの感謝の言葉をしっかりと伝える職場の社員はストレスが減少するという検証結果もあるほど感謝を伝える＝組織活性化を促せる。生産性 UP を促せる。離職防止が出来ると考えそれが可能なツール作成を考えた。
+更に、情報の共有は情報で溢れる今の時代に社内でのマインドや知識の統一が取りやすいのでその機能もつけたツールとなっている。
+昨今テレワークが増えたことで対面でのコミュニケーションが困難になっているからより一層オンラインでのコミュニケーションツールが活躍すると考えている
 
-* Database initialization
+### ターゲットユーザ
 
-* How to run the test suite
+- 社員を抱える社長
+- 離職の問題を抱えている会社の社長やチームリーダー
+- コミュニケーション不足の問題を抱えている会社
+- 社内で意識の統一や考え方を統一したいと考えている会社
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
 
-* Deployment instructions
+- 仕事中
 
-* ...
+## 設計書
+
+### 機能一覧
+
+[チャレンジ要素一覧（クラウド教養コース）](https://docs.google.com/spreadsheets/d/11vT-CJ0CDWwTn9ZXgUuaOOzv-lBLKihAXkJZgoRSDSo/edit?usp=sharing)
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- 仮想環境：Cloud9
+
+## 使用素材
+
+- 現段階では不明
