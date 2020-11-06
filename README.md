@@ -29,14 +29,14 @@
 - 仕事中
 
 ## 設計書
-[ワイヤーフレーム](https://drive.google.com/file/d/1bfVt2w62z_OGugz4CAd7FfIdTvjhirMQ/view?usp=sharing)
-[ER図](https://drive.google.com/file/d/11eRNl0D0PFi2TR0-EJmzYdUQ9pyyz7ZW/view?usp=sharing)
-[テーブル定義書](https://docs.google.com/spreadsheets/d/1yW6YaCIGWfqaHY9oATC1Z4B2x8yCrixkLq39YW-Vhf4/edit?usp=sharing)
-[アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/15SkEjhwmZPTl5q9tCT_wQhRLYlbsfW0hE6EAOrWjYMg/edit?usp=sharing)
+- [ワイヤーフレーム](https://drive.google.com/file/d/1bfVt2w62z_OGugz4CAd7FfIdTvjhirMQ/view?usp=sharing)
+- [ER図](https://drive.google.com/file/d/11eRNl0D0PFi2TR0-EJmzYdUQ9pyyz7ZW/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1yW6YaCIGWfqaHY9oATC1Z4B2x8yCrixkLq39YW-Vhf4/edit?usp=sharing)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/15SkEjhwmZPTl5q9tCT_wQhRLYlbsfW0hE6EAOrWjYMg/edit?usp=sharing)
 
 ### 機能一覧
 
-[チャレンジ要素一覧（クラウド教養コース）](https://docs.google.com/spreadsheets/d/11vT-CJ0CDWwTn9ZXgUuaOOzv-lBLKihAXkJZgoRSDSo/edit?usp=sharing)
+- [チャレンジ要素一覧（クラウド教養コース）](https://docs.google.com/spreadsheets/d/11vT-CJ0CDWwTn9ZXgUuaOOzv-lBLKihAXkJZgoRSDSo/edit?usp=sharing)
 
 ## 開発環境
 
