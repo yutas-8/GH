@@ -1,0 +1,13 @@
+<%= form_with model:@member, local:true do |f| %>
+  <%= f.label "姓" %>
+  <%= f.text_field :first_name, autofocus: true %>
+  <%= f.label "名" %>
+  <%= f.text_field :last_name, autofocus: true %>
+  <%= f.label "メールアドレス" %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= f.label "誕生日" %>
+  <%= f.date_select :birthday, use_month_numbers:true, strt_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1) %>
+  <%= f.label "自己紹介文" %>
+  <%= f.text_field :introduction, autofocus: true %>
+  <%= f.submit "編集終わり" %>
+<% end %>
