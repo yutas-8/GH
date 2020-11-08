@@ -9,5 +9,7 @@
   <%= f.date_select :birthday, use_month_numbers:true, strt_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1) %>
   <%= f.label "自己紹介文" %>
   <%= f.text_field :introduction, autofocus: true %>
+  <%= f.label "プロフィール画像" %>
+  <%= f.attachment_field :profile_image %>
   <%= f.submit "編集終わり" %>
 <% end %>
