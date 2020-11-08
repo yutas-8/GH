@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   scope module: :user do
     resources :members, only: [:show, :edit, :update]
+    resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 end

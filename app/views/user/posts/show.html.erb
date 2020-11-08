@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-4">
+    <% @posts.each do |post| %>
+      <%= post.title %>
+      <%= post.member.first_name + post.member.first_name  %>
+    <% end %>
+  </div>
+  <div class="col-xs-8">
+    <%= @post.title %>
+    <%= @post.body %>
+  </div>
+</div>
