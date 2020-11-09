@@ -2,6 +2,7 @@ class User::MembersController < ApplicationController
   #before_action :current_member, only: [:edit, :update]
   def show
     @member = Member.find(params[:id])
+    @posts = Post.all
   end
 
   def edit

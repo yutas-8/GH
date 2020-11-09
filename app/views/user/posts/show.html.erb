@@ -1,12 +1,9 @@
 <div class="row">
-  <div class="col-xs-4">
-    <% @posts.each do |post| %>
-      <%= post.title %>
-      <%= post.member.first_name + post.member.first_name  %>
-    <% end %>
-  </div>
+  <%= render "layouts/post-index" %>
   <div class="col-xs-8">
     <%= @post.title %>
     <%= @post.body %>
+    <%= link_to "編集", edit_post_path %>
+    <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %>
   </div>
 </div>

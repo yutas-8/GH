@@ -1,0 +1,6 @@
+<%= form_with model: @post, local:true do |f| %>
+  <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control" %>
+  <%= f.text_area :body, autofocus: true, placeholder: "内容", rows: "3", class: "form-control" %>
+  <%= f.attachment_field :image %>
+  <%= f.submit "編集終わり" %>
+<% end %>

@@ -1,0 +1,6 @@
+<div class="col-xs-4">
+    <% @posts.each do |post| %>
+      <div><%= link_to post.title, post_path(post.id) %></div>
+      <div><%= post.member.first_name + post.member.first_name  %></div>
+    <% end %>
+</div>

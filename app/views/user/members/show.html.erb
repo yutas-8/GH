@@ -19,5 +19,10 @@
   </div>
 
   <div class="col-xs-9">
+    <% @posts.each do |post| %>
+      <div><%= link_to post.title, post_path(post.id) %></div>
+      <div><%= post.body %></div>
+
+    <% end %>
   </div>
 </div>
