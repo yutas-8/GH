@@ -1,0 +1,28 @@
+<div class="row">
+  <%= render "layouts/post-index" %>
+  <div class="col-xs-8">
+    <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+    <div><%= @post.title %></div>
+    <div><%= @post.body %></div>
+    <div><%= link_to "編集", edit_post_path %></div>
+    <div><%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %></div>
+    <div>
+      <% @post.post_comments.each do |post_comment| %>
+        <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+        <%= post_comment.member.first_name +  post_comment.member.last_name %>
+        <%= post_comment.comment %>
+        <%= post_comment.created_at.strftime('%F %T') %>
+      <div>
+        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+      </div>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:"3", placeholder: "リアクションをする" %>
+        <%= f.submit "送信" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

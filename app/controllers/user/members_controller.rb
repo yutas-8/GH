@@ -2,6 +2,7 @@ class User::MembersController < ApplicationController
   #before_action :current_member, only: [:edit, :update]
   def show
     @member = Member.find(params[:id])
+    @posts = Post.all
   end
 
   def edit
@@ -16,7 +17,7 @@ class User::MembersController < ApplicationController
 
   private
   def member_params
-    params.require(:member).permit(:first_name, :last_name, :birthday, :introduction, :profile_image_id)
+    params.require(:member).permit(:first_name, :last_name, :birthday, :introduction, :profile_image)
   end
 
   # 自分のアカウトでしか編集、更新が出来ない
