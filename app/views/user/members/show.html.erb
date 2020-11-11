@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-3">
     <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+    <div>ありがとう数<%= current_member.to_thanks.count %></div>
+    <div>ありがとうした数<%= current_member.from_thanks.count %></div>
     <table class="table table-striped">
       <tr>
         <th>名前</th>

@@ -3,7 +3,10 @@
     <% @thanks.each do |thank| %>
       <%= thank.body %>
     <% end %>
+    ありがとう数<%= current_member.to_thanks.count %>
+    ありがとうした数<%= current_member.from_thanks.count %>
   </div>
+
   <div class="col-xs-4">
     <%= form_with model: @thank, local: true do |f| %>
       <%= f.select(:member_id, @member_name_list, {include_blank: "誰に？"}) %>
