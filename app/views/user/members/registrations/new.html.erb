@@ -11,6 +11,11 @@
   </div>
 
   <div class="field">
+    <%= f.label "誕生日" %>
+    <%= f.date_select :birthday, use_month_numbers:true, strt_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1) %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
