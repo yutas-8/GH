@@ -2,8 +2,12 @@
   <div class="col-xs-8">
     <% @thanks.each do |thank| %>
       <%= thank.body %>
+      <% if thank.to_id == current_member %>
+        <%= link_to "編集", edit_thank_path(thank.id) %>
+        <%= link_to "削除", thank_path(thank.id), method: :delete %>
+      <% end %>
     <% end %>
-    ありがとう数<%= current_member.to_thanks.count %>
+    ありがとう数<%= current_member.tos.count %>
     ありがとうした数<%= current_member.from_thanks.count %>
   </div>
 

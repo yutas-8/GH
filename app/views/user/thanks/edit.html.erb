@@ -1,0 +1,5 @@
+<%= form_with model: @thank, local: true do |f| %>
+  <%= f.select(:member_id, @member_name_list, {include_blank: "誰に？"}) %>
+  <%= f.text_area :body, autofocus: true, rows: "3" %>
+  <%= f.submit "編集終わり" %>
+<% end %>
