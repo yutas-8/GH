@@ -1,4 +1,5 @@
 class User::ThanksController < ApplicationController
+
   def index
     @thanks = Thank.all
     @thank = Thank.new
@@ -20,16 +21,44 @@ class User::ThanksController < ApplicationController
     redirect_to thanks_path(current_member)
   end
 
+  def edit
+    @thank = Thank.find(params[:id])
+    @members = Member.all
+    @member_name_list = {}
+    @members.each do |member|
+      fullname = member.first_name + ' ' + member.last_name
+      @member_name_list[fullname] = member.id
+    end
+  end
 
-  # def reverses
-  #   member = Member.find(params[:member_id])
-  #   @members = member.reverses
-  # end
+  def update
+    @thank = Thank.find(params[:id])
+    if @thank.to_id == current_member
+        @thank.update(thank_params)
+        redirect_to thanks_path(current_member)
+    else
+        redirect_to thanks_path
+    end
+  end
 
-  # def gives
-  #   member = Member.find(params[:member_id])
-  #   @members = member.gives
-  # end
+  def destroy
+    @thank = Thank.find(params[:id])
+    if @thank.to_id == current_member
+        @thank.destroy
+        redirect_to thanks_path(current_member)
+    end
+  end
+
+
+  def tos
+    member = Member.find(params[:member_id])
+    @members = member.tos
+  end
+
+  def froms
+    member = Member.find(params[:member_id])
+    @members = member.froms
+  end
 
   private
   def thank_params

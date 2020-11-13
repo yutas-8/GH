@@ -1,0 +1,5 @@
+<% @members.each do |member| %>
+  <%= member.first_name %>
+  ありがとう数<%= member.to_thanks.count %>
+  ありがとうした数<%= member.from_thanks.count %>
+<% end %>

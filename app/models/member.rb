@@ -9,9 +9,9 @@ class Member < ApplicationRecord
 
   #ありがとうを受け取る側
   has_many :to_thanks, class_name: "Thank", foreign_key: "to_id"
-  has_many :froms, through: :to_thanks, source: :from
+  has_many :tos, through: :to_thanks, source: :from
   #ありがとうを贈る側
   has_many :from_thanks, class_name: "Thank", foreign_key: "from_id"
-  has_many :tos, through: :from_thanks, source: :to
+  has_many :froms, through: :from_thanks, source: :to
 
 end
