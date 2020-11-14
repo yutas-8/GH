@@ -9,7 +9,7 @@
       </thead>
       <tbody>
         <% @thanks.each do |thank| %>
-          <% if thank.to_id == current_member.id %><!--自分に関係ないものは非表示-->
+          <% if thank.from_id == current_member.id %><!--自分に関係ないものは非表示-->
             <tr>
               <th>
                 <%= attachment_image_tag thank.to, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
@@ -17,8 +17,9 @@
               </th>
               <th><%= thank.body %></th>
               <th>
-                <%= attachment_image_tag thank.from, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-                <%= thank.from.first_name + " " + thank.from.last_name %>
+                <%= link_to "編集", edit_thank_path(thank.id), class: "btn btn-warning btn-sm " %>
+                ,
+                <%= link_to "削除", thank_path(thank.id), method: :delete, class: "btn btn-danger btn-sm" %>
               </th>
               <th><%= thank.created_at.strftime('%F %T') %></th>
             </tr>

@@ -1,9 +1,9 @@
 class User::ThanksController < ApplicationController
 
   def index
-    @thanks = Thank.all
+    @thanks = Thank.page(params[:page]).reverse_order
     @thank = Thank.new
-
+    @today_thanks = Thank.where("created_at >= ?", Date.today)
 
     @members = Member.all
     @member_name_list = {} # hash 連想配列
@@ -15,10 +15,14 @@ class User::ThanksController < ApplicationController
 
   def create
     @member = Member.find(params[:thank][:member_id])
-    @thank = current_member.from_thanks.build(thank_params)
+    @thank = current_member.from_thanks.new(thank_params)
     @thank.to_id = @member.id
-    @thank.save
-    redirect_to thanks_path(current_member)
+    if @thank.from_id == @thank.to_id#自分にありがとうを送れないようにする
+      redirect_to "/"
+    else
+      @thank.save
+      redirect_to thanks_path(current_member)
+    end
   end
 
   def edit
@@ -33,7 +37,7 @@ class User::ThanksController < ApplicationController
 
   def update
     @thank = Thank.find(params[:id])
-    if @thank.to_id == current_member
+    if @thank.from_id == current_member.id
         @thank.update(thank_params)
         redirect_to thanks_path(current_member)
     else
@@ -43,7 +47,7 @@ class User::ThanksController < ApplicationController
 
   def destroy
     @thank = Thank.find(params[:id])
-    if @thank.to_id == current_member
+    if @thank.from_id == current_member.id
         @thank.destroy
         redirect_to thanks_path(current_member)
     end
@@ -51,13 +55,11 @@ class User::ThanksController < ApplicationController
 
 
   def tos
-    member = Member.find(params[:member_id])
-    @members = member.tos
+    @thanks = Thank.page(params[:page]).reverse_order
   end
 
   def froms
-    member = Member.find(params[:member_id])
-    @members = member.froms
+    @thanks = Thank.page(params[:page]).reverse_order
   end
 
   private
