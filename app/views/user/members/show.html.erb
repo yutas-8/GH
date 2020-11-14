@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-3">
     <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-    <div>ありがとう数<%= current_member.to_thanks.count %></div>
-    <div>ありがとうした数<%= current_member.from_thanks.count %></div>
+    <div>貰ったありがとう：<%= current_member.to_thanks.count %></div>
+    <div>贈ったありがとう：<%= current_member.from_thanks.count %></div>
     <table class="table table-striped">
       <tr>
         <th>名前</th>
@@ -17,16 +17,27 @@
         <th><%= @member.introduction %></th>
       </tr>
     </table>
-    <%= link_to "編集", edit_member_path(current_member) %>
+    <%= link_to "編集", edit_member_path(current_member), class: "glyphicon glyphicon-pencil pull-right" %>
   </div>
 
   <div class="col-xs-9">
     <% @posts.each do |post| %>
-      <div><%= link_to post.title, post_path(post.id) %></div>
-      <div><%= post.body %></div>
-      <%= post.created_at.strftime('%F %T') %>
-      <%= post.post_comments.count %>
-
+    <div class= "post-box">
+      <div class= "post-header">
+        <%= link_to post.title, post_path(post.id) %>
+      </div>
+      <div class= "post-body">
+        <%= post.body %>
+      </div>
+      <div class="post-date">
+        <%= post.created_at.strftime('%F %T') %>
+        <i class="fas fa-comment-dots">
+          <%= post.post_comments.count %>
+        </i>
+        <i class="far fa-thumbs-up"></i>
+        <i class="fas fa-hand-holding-heart"></i>
+      </div>
+    </div>
     <% end %>
   </div>
 </div>
