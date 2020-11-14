@@ -1,8 +1,13 @@
 <div class="row">
   <div class="col-xs-3">
     <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-    <div>貰ったありがとう：<%= current_member.to_thanks.count %></div>
-    <div>贈ったありがとう：<%= current_member.from_thanks.count %></div>
+    <% if current_member %>
+      <div>貰ったありがとう：<%= link_to current_member.to_thanks.count, tos_path %></div>
+      <div>贈ったありがとう：<%= link_to current_member.from_thanks.count, froms_path %></div>
+    <% else %>
+      <div>貰ったありがとう：<%= current_member.to_thanks.count %></div>
+      <div>贈ったありがとう：<%= current_member.from_thanks.count %></div>
+    <% end %>
     <table class="table table-striped">
       <tr>
         <th>名前</th>
