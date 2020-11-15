@@ -4,6 +4,10 @@ class User::ThanksController < ApplicationController
     @thanks = Thank.page(params[:page]).reverse_order
     @thank = Thank.new
     @today_thanks = Thank.where("created_at >= ?", Date.today)
+    @this_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.now.month)
+    @prev_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.now.prev_month.month)
+    @month_to_month_thanks = @this_month_thanks.count -  @prev_month_thanks.count
+
 
     @members = Member.all
     @member_name_list = {} # hash 連想配列

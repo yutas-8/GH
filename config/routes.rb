@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   scope module: :user do
     root "home#top"
+    get "about" => "home#about"
     resources :members, only: [:show, :edit, :update]
     resources :thanks, only: [:create, :destroy, :index, :edit, :update]
     get "tos" => "thanks#tos", as: "tos"

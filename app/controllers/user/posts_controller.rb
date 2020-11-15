@@ -1,10 +1,10 @@
 class User::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
   end

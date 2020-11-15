@@ -1,1 +1,61 @@
-<h1>TOP</h1>
+<div class= "row">
+  <div class="main-visual-content"></div>
+  <div class= "content-box">
+    <div>今日のありがとう<%= @today_thanks.count %>件</div>
+    <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
+  </div>
+  <!--新着投稿-->
+  <div class="col-xs-4">
+    新着投稿
+    <%= render "layouts/post-index", posts: @posts %>
+    <%= link_to "他の投稿も見る", posts_path %>
+  </div>
+  <div class="col-xs-4">
+    貰った新着ありがとう
+    <% @thanks.each do |thank| %>
+    <% if thank.to_id == current_member.id %>
+    <div class= "content-box">
+      <div class= "content-body">
+        <%= thank.body %>
+      </div>
+      <div class="content-date">
+        <%= attachment_image_tag thank.from, :profile_image, :fill, 20, 20, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+        <%= thank.from.first_name + " " + thank.from.last_name %>
+        <%= thank.created_at.strftime('%F %T') %>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+    <!--誕生日-->
+  <div class="col-xs-4">
+    <% if @birthday_members.any? %>
+      <table class="table table-striped">
+         <thead>
+           <tr>
+             <th>誕生日</th>
+             <th></th>
+           </tr>
+         </thead>
+
+         <tbody>
+          <% @birthday_members.each do |member| %>
+          <tr>
+            <td><%= member.first_name + " " + member.last_name %></td>
+            <td><%= member.birthday.strftime("%m月%d日") %></td>
+          </tr>
+          <% end %>
+          <% @next_birthday_members.each do |member| %>
+          <tr>
+            <td><%= member.first_name + " " + member.last_name %></td>
+            <td><%= member.birthday.strftime("%m月%d日") %></td>
+          </tr>
+          <% end %>
+         </tbody>
+
+      </table>
+
+    <% end %>
+  </div>
+
+</div>

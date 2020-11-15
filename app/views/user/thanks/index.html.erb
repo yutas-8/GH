@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-8">
     <div>今日のありがとう<%= @today_thanks.count %>件</div>
+    <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
+
     <table class="table table-hover">
       <thead>
         <tr>
