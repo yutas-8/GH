@@ -49,4 +49,5 @@
 
 ## 使用素材
 
-- 現段階では不明
+- [BEIZimages](https://www.beiz.jp/)
+- [PAKUTAS](https://www.pakutaso.com/)
