@@ -1,20 +1,22 @@
-    <% posts.each do |post| %>
-    <div class= "content-box">
-      <div class= "content-header">
-        <%= link_to post.title, post_path(post.id) %>
-      </div>
-      <div>
-        <%= attachment_image_tag post.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-        <%= post.member.first_name + " " + post.member.last_name  %>
-      </div>
-      <div class="content-date">
-        <%= post.created_at.strftime('%F %T') %>
-        <i class="fas fa-comment-dots">
-          <%= post.post_comments.count %>
-        </i>
-        <i class="far fa-thumbs-up"></i>
-        <i class="fas fa-hand-holding-heart"></i>
-      </div>
-      
+  <% posts.each do |post| %>
+    <div class="post_<%= post.id %>">
+      <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
+        <div class= "content-header">
+          <%= attachment_image_tag post.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+          <%= post.member.first_name + " " + post.member.last_name  %>
+        </div>
+        <div class= "content-header">
+          <h4>【<%= post.title.truncate(16, omission: "...") %>】</h4>
+        </div>
+        <div class= "content-body">
+          <%= post.body.truncate(12, omission: "...") %>
+        </div>
+        <div class="content-date">
+          <%= post.created_at.strftime('%F %T') %>
+          <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+          <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
+          <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
+        </div>
+      <% end %>
     </div>
-    <% end %>
+  <% end %>

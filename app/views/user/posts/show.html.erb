@@ -3,14 +3,31 @@
     <%= render "layouts/post-index", posts: @posts %>
   </div>
   <div class="col-xs-8">
-    <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-    <%= @post.member.first_name + " " + @post.member.last_name %>
-    <%= link_to "編集", edit_post_path %>
-    <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %>
-    <div><%= @post.title %></div>
-    <div><%= @post.body %></div>
-    <div><%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %></div>
+    <div class="post_<%= @post.id %> content-box">
+      <div>
+      <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+      <%= @post.member.first_name + " " + @post.member.last_name %>
+      </div>
+      <div>
+      <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
+      <div class="praise-btn"><%= render "user/praises/praise-btn", post: @post %></div>
+      <div class="cheering-btn"><%= render "user/cheerings/cheering-btn", post: @post %></div>
+
+      <% if @post.member_id == current_member.id %>
+        <%= link_to "編集", edit_post_path %>
+        <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %>
+      <% end %>
+      </div>
+
+
+      <h2><%= @post.title %></h2>
+      <div class= "content-body">
+        <%= @post.body %>
+      </div>
+      <div><%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %></div>
+    </div>
     <div>
+      <br>コメント欄↓
       <% @post.post_comments.each do |post_comment| %>
         <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
         <%= post_comment.member.first_name +  post_comment.member.last_name %>
