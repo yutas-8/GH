@@ -1,0 +1,11 @@
+<% if post.praised_by?(current_member) %>
+  <p>
+    <i class="fas fa-laugh-beam" style="color: gold;"></i>
+    <%=  post.praises.count %>
+  </p>
+  <% else %>
+  <p>
+    <i class="fas fa-meh"></i>
+    <%=  post.praises.count %>
+  </p>
+<% end %>

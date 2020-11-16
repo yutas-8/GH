@@ -27,22 +27,20 @@
 
   <div class="col-xs-9">
     <% @posts.each do |post| %>
-    <div class= "content-box">
+    <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
       <div class= "content-header">
-        <%= link_to post.title, post_path(post.id) %>
+        <%= post.title %>
       </div>
       <div class= "content-body">
         <%= post.body %>
       </div>
       <div class="content-date">
         <%= post.created_at.strftime('%F %T') %>
-        <i class="fas fa-comment-dots">
-          <%= post.post_comments.count %>
-        </i>
-        <i class="far fa-thumbs-up"></i>
-        <i class="fas fa-hand-holding-heart"></i>
+        <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+        <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
+        <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
       </div>
-    </div>
+    <% end %>
     <% end %>
   </div>
 </div>

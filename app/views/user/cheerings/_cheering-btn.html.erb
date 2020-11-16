@@ -1,0 +1,15 @@
+<% if post.cheering_by?(current_member) %>
+  <p>
+    <%= link_to post_cheerings_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-hand-holding-heart" style="color: pink;"></i>
+    <%= post.cheerings.count %>
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_cheerings_path(post), method: :post, remote: true do %>
+    <i class="fas fa-hand-holding"></i>
+    <%= post.cheerings.count %>
+    <% end %>
+  </p>
+<% end %>

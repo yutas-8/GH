@@ -13,5 +13,10 @@ class Member < ApplicationRecord
   #ありがとうを贈る側
   has_many :from_thanks, class_name: "Thank", foreign_key: "from_id"
   has_many :froms, through: :from_thanks, source: :to
+  
+  has_many :praises
+  has_many :cheerings
+  
+  
 
 end

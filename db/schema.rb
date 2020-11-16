@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_121205) do
+ActiveRecord::Schema.define(version: 2020_11_16_025614) do
+
+  create_table "cheerings", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,6 +52,13 @@ ActiveRecord::Schema.define(version: 2020_11_09_121205) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"
+  end
+
+  create_table "praises", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "thanks", force: :cascade do |t|
