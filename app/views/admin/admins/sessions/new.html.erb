@@ -1,5 +1,5 @@
 <div class="row">
-<h2 class="col-xs-offset-2">ログイン</h2>
+<h2 class="col-xs-offset-2">管理者ログイン</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group col-xs-8 col-xs-offset-2">
@@ -14,10 +14,13 @@
 
     <div class="actions col-xs-8 col-xs-offset-2">
       <%= f.submit "Log in", class: "btn btn-success" %><br />
-      <%= render "user/members/shared/links" %>
     </div>
   <% end %>
-  <%= link_to "管理者の方はこちら", new_admin_session_path, class:"pull-right" %>
+  <%= link_to "戻る", new_member_session_path, class:"pull-right" %>
+  <%#= render "admin/admins/shared/links" %>
 </div>
+
+
+
 
 
