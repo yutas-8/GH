@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {
+    sessions: "admin/admins/sessions"
+  }
+
   devise_for :members, controllers: {
     sessions: "user/members/sessions",
     registrations: "user/members/registrations"
@@ -16,5 +20,9 @@ Rails.application.routes.draw do
       resource :praises, only: [:create, :destroy]
       resource :cheerings, only: [:create, :destroy]
     end
+  end
+
+  namespace :admin do
+    resources :members, only: [:index, :update, :destroy]
   end
 end

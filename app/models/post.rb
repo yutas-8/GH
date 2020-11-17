@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :member
   has_many :post_comments, dependent: :destroy
-  has_many :praises
-  has_many :cheerings
+  has_many :praises, dependent: :destroy
+  has_many :cheerings, dependent: :destroy
   attachment :image
 
   def praised_by?(member)
