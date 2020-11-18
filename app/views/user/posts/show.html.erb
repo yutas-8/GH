@@ -41,7 +41,7 @@
     <div>
       <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
         <%= f.text_area :comment, rows:"3", placeholder: "リアクションをする" %>
-        <%= f.submit "送信" %>
+        <%= f.submit "送信", class: "button" %>
       <% end %>
     </div>
 

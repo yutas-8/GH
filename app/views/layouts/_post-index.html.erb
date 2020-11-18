@@ -1,7 +1,7 @@
   <% posts.each do |post| %>
     <div class="post_<%= post.id %>">
       <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
-        <div class= "content-header">
+        <div class= "content-member_name">
           <%= attachment_image_tag post.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
           <%= post.member.first_name + " " + post.member.last_name  %>
         </div>
@@ -13,6 +13,8 @@
         </div>
         <div class="content-date">
           <%= post.created_at.strftime('%F %T') %>
+        </div>
+        <div class="content-icon">
           <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
           <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
           <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
