@@ -4,11 +4,11 @@
 			<ul class="nav nav-pills navbar-left">
 				<h3><%= link_to "社名", root_path %></h3>
 			</ul>
-			<ul class="nav nav-pills navbar-right">
-				<li><%= link_to "投稿一覧", posts_path %></li>
-				<li><%= link_to "MYページ", member_path(current_member) %></li>
-				<li><%= link_to "ありがとう", thanks_path(current_member) %></li>
-				<li><%= link_to "新規投稿", new_post_path %></li>
+			<ul class="nav nav-pills navbar-right btn-group">
+				<li><%= link_to "投稿一覧", posts_path, class: "btn btn-default navbar-btn" %></li>
+				<li><%= link_to "MYページ", member_path(current_member), class: "btn btn-default navbar-btn" %></li>
+				<li><%= link_to "ありがとう", thanks_path(current_member), class: "btn btn-default navbar-btn" %></li>
+				<li><%= link_to "新規投稿", new_post_path, class: "btn btn-default navbar-btn" %></li>
 				<li><%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-default navbar-btn" %></li>
 			</ul>
 		</div>

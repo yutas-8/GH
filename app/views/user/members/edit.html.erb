@@ -1,32 +1,34 @@
 <div class="row">
-<h3 class="form-group col-xs-8 col-xs-offset-2">MY情報編集</h3>
-<%= form_with model:@member, local:true do |f| %>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label :姓 %><br />
-    <%= f.text_field :first_name, autofocus: true, class: "form-control-static col-xs-8" %>
-  </div>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label :名 %><br />
-    <%= f.text_field :last_name, autofocus: true, class: "form-control-static col-xs-8"  %>
-  </div>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-static col-xs-8"  %>
-  </div>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label "誕生日" %><br />
-    <%= f.date_select :birthday, {use_month_numbers:true, start_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1)}, {class: "form-control-static bootstrap-date"} %>
-  </div>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label "自己紹介文" %><br />
-    <%= f.text_area :introduction, autofocus: true, class: "form-control-static col-xs-8" %>
-  </div>
-  <div class="form-group col-xs-8 col-xs-offset-2">
-    <%= f.label "プロフィール画像" %>
-    <%= f.attachment_field :profile_image %>
-  </div>
-  <div class="form-group col-xs-2 col-xs-offset-4">
-    <%= f.submit "編集終わり", class: "btn btn-warning btn-block" %>
-  </div>
-<% end %>
+  <h3 class="form-group col-xs-8 col-xs-offset-3">MY情報編集</h3>
+
+  <%= form_with model:@member, local:true do |f| %>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label :姓 %><br />
+      <%= f.text_field :first_name, autofocus: true, class: "form-control-static col-xs-8" %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label :名 %><br />
+      <%= f.text_field :last_name, autofocus: true, class: "form-control-static col-xs-8"  %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-static col-xs-8"  %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label "誕生日" %><br />
+      <%= f.date_select :birthday, {use_month_numbers:true, start_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1)}, {class: "form-control-static bootstrap-date"} %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label "自己紹介文" %><br />
+      <%= f.text_area :introduction, autofocus: true, class: "form-control-static col-xs-8" %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.label "プロフィール画像" %>
+      <%= f.attachment_field :profile_image %>
+    </div>
+    <div class="form-group col-xs-2 col-xs-offset-5">
+      <%= f.submit "編集終わり", class: "button" %>
+    </div>
+  <% end %>
+
 </div>

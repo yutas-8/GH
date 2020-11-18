@@ -1,6 +1,18 @@
-<%= form_with model: @post, local:true do |f| %>
-  <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control" %>
-  <%= f.text_area :body, autofocus: true, placeholder: "内容", rows: "3", class: "form-control" %>
-  <%= f.attachment_field :image %>
-  <%= f.submit "投稿" %>
-<% end %>
+<div class="row">
+  <h3 class="form-group col-xs-8 col-xs-offset-3">新規投稿</h3>
+
+  <%= form_with model: @post, local:true do |f| %>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control-static col-xs-8" %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.text_area :body, autofocus: true, placeholder: "内容", size: "20x10", class: "form-control-static col-xs-8" %>
+    </div>
+    <div class="form-group col-xs-8 col-xs-offset-3">
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="form-group col-xs-2 col-xs-offset-5">
+      <%= f.submit "投稿", class: "button" %>
+    </div>
+  <% end %>
+</div>

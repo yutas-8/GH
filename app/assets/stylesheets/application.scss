@@ -18,13 +18,17 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+p{
+  word-break:normal;// 英語は単語毎、日本語は範囲で自動改行
+}
+
 // devise
 .bootstrap-date {
   display: inline-block;
   width: auto;
 }
 
-// member
+// 全体
 .content-box{
   display: flex;
   flex-direction: column;
@@ -32,23 +36,60 @@
   border-radius: 8px;
   padding:10px 16px;
   text-decoration: none;
-  // position:;
+  position:relative;
+}
+
+.content-member_name{
+  display: flex;
+  flex-direction: row;
 }
 
 .content-header{
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  border-left: thick solid orange;
+  padding-left: 10px;
+
 }
 
 .content-body{
   display: flex;
   flex-direction: row;
+  margin: 5px;
 }
 
 .content-date{
   display: flex;
+  position: absolute;
+  right: 8px;
+  color: #808080;
+}
+
+.content-icon{
+  display: flex;
   justify-content: flex-end;
+
+}
+
+.button {
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 12pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 8px 12px;
+  background    : #ffa64d;     /* 背景色:会社のイメージカラーに変える */
+  color         : #ffffff;     /* 文字色:背景色に合わせてバランスを取る */
+  line-height   : 0.8em;
+  transition    : .3s;
+  box-shadow    : 5px 5px 3px #666666;
+  border        : 2px solid #ffa64d;
+}
+.button:hover {
+  box-shadow    : none;
+  color         : #ffa64d;     /* 上記の背景色を反転させる */
+  background    : #ffffff;     /* 背景色反転に合わせてこちらも変更 */
 }
 
 // top

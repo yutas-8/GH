@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-3 content-box">
+    <div class= "content-member_name">
     <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+    </div>
     <% if current_member %>
       <div>貰ったありがとう：<%= link_to current_member.to_thanks.count, tos_path %></div>
       <div>贈ったありがとう：<%= link_to current_member.from_thanks.count, froms_path %></div>
@@ -19,28 +21,31 @@
       </tr>
       <tr>
         <th>自己紹介</th>
-        <th><%= @member.introduction %></th>
+        <td><%= @member.introduction %></td>
       </tr>
     </table>
-    <%= link_to "編集", edit_member_path(current_member), class: "glyphicon glyphicon-pencil pull-right" %>
+    <%= link_to "", edit_member_path(current_member), class: "fas fa-edit content-icon" %>
   </div>
 
   <div class="col-xs-9">
     <% @posts.each do |post| %>
     <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
-      <div class= "content-header">
-        <%= post.title %>
-      </div>
-      <div class= "content-body">
-        <%= post.body %>
-      </div>
+      <h4 class= "content-header">
+        <%= post.title.truncate(20, omission: "...") %>
+      </h4>
+      <p class= "content-body">
+        <%= post.body.truncate(30, omission: "...") %>
+      </p>
       <div class="content-date">
-        <%= post.created_at.strftime('%F %T') %>
+        <%= post.created_at.strftime('%F') %>
+      </div>
+      <div class="content-icon">
         <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
         <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
         <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
       </div>
     <% end %>
     <% end %>
+    <%= paginate @posts %>
   </div>
 </div>
