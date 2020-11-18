@@ -1,58 +1,18 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-xs-7">
     <div>今日のありがとう<%= @today_thanks.count %>件</div>
     <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>to</th>
-          <th>内容</th>
-          <th>from</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @thanks.each do |thank| %>
-          <% if (thank.from_id == current_member.id) || (thank.to_id == current_member.id) %><!--自分に関係ないものは非表示-->
-            <tr>
-              <th>
-                <%= attachment_image_tag thank.to, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-                <%= thank.to.first_name + " " + thank.to.last_name %>
-              </th>
-              <th><%= thank.body %></th>
-            <% if thank.from_id == current_member.id %>
-              <th>
-                <%= link_to "編集", edit_thank_path(thank.id), class: "btn btn-warning btn-sm " %>
-                ,
-                <%= link_to "削除", thank_path(thank.id), method: :delete, class: "btn btn-danger btn-sm" %>
-              </th>
-            <% else %>
-              <th>
-                <%= attachment_image_tag thank.from, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-                <%= thank.from.first_name + " " + thank.from.last_name %>
-              </th>
-            <% end %>
-              <th><%= thank.created_at.strftime('%F %T') %></th>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+    <% @thanks.each do |thank| %>
+      <% if (thank.from_id == current_member.id) || (thank.to_id == current_member.id) %><!--自分に関係ないものは非表示-->
+        <%= render "user/thanks/thank_index", thank: thank %>
+      <% end %>
+    <% end %>
     <%= paginate @thanks %>
   </div>
 
-  <div class="col-xs-4">
-    <%= form_with model: @thank, local: true do |f| %>
-      <div class="form-group col-xs-10 col-xs-offset-2">
-        <%= f.select(:member_id, @member_name_list, {include_blank: "誰に？"}) %>
-      </div>
-      <div class="form-group col-xs-10 col-xs-offset-2">
-        <%= f.text_area :body, autofocus: true, placeholder: "どんな感謝を送りますか？", class: "form-control"  %>
-      </div>
-      <div class="form-group col-xs-8 col-xs-offset-2">
-        <%= f.submit "ありがとう", class: "button" %>
-      </div>
-    <% end %>
+  <div class="col-xs-5">
+    <h3 class="col-xs-offset-2">ありがとうを贈る</h3>
+    <%= render "user/thanks/thank_form" %>
   </div>
 </div>

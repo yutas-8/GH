@@ -1,29 +1,6 @@
-<table class="table table-hover">
-      <thead>
-        <tr>
-          <th>to</th>
-          <th>内容</th>
-          <th>from</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @thanks.each do |thank| %>
-          <% if thank.to_id == current_member.id %><!--自分に関係ないものは非表示-->
-            <tr>
-              <th>
-                <%= attachment_image_tag thank.to, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-                <%= thank.to.first_name + " " + thank.to.last_name %>
-              </th>
-              <th><%= thank.body %></th>
-              <th>
-                <%= attachment_image_tag thank.from, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-                <%= thank.from.first_name + " " + thank.from.last_name %>
-              </th>
-              <th><%= thank.created_at.strftime('%F %T') %></th>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @thanks %>
+  <% @thanks.each do |thank| %>
+    <% if thank.to_id == current_member.id %><!--自分に関係ないものは非表示-->
+      <%= render "user/thanks/thank_index", thank: thank %>
+    <% end %>
+  <% end %>
+  <%= paginate @thanks %>

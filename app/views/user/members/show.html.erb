@@ -24,7 +24,7 @@
         <td><%= @member.introduction %></td>
       </tr>
     </table>
-    <%= link_to "", edit_member_path(current_member), class: "fas fa-edit content-date" %>
+    <%= link_to "", edit_member_path(current_member), class: "fas fa-edit content-icon" %>
   </div>
 
   <div class="col-xs-9">
@@ -37,7 +37,7 @@
         <%= post.body.truncate(30, omission: "...") %>
       </p>
       <div class="content-date">
-        <%= post.created_at.strftime('%F %T') %>
+        <%= post.created_at.strftime('%F') %>
       </div>
       <div class="content-icon">
         <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
@@ -46,5 +46,6 @@
       </div>
     <% end %>
     <% end %>
+    <%= paginate @posts %>
   </div>
 </div>
