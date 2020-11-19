@@ -15,11 +15,10 @@
           <%= post.created_at.strftime('%F %T') %>
         </div>
         <div class="content-bottom_right">
-          <i class="far fa-comment-dots icon"></i><%= post.post_comments.count %>
           <div class="praise-count icon"><%= render "user/praises/praise-count", post: post %></div>
           <div class="cheering-count icon"><%= render "user/cheerings/cheering-count", post: post %></div>
+          <div class="far fa-comment-dots icon"></div><%= post.post_comments.count %>
         </div>
       <% end %>
     </div>
   <% end %>
-  

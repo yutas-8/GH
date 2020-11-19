@@ -1,7 +1,8 @@
 class User::ThanksController < ApplicationController
 
   def index
-    @thanks = Thank.page(params[:page]).reverse_order
+    # 自分に関係ないものは非表示
+    @thanks = Thank.where(from_id: current_member.id).or(Thank.where(to_id: current_member.id)).page(params[:page]).reverse_order
     @thank = Thank.new
     @today_thanks = Thank.where("created_at >= ?", Date.today)
     @this_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.now.month)
@@ -59,11 +60,11 @@ class User::ThanksController < ApplicationController
 
 
   def tos
-    @thanks = Thank.page(params[:page]).reverse_order
+    @thanks = Thank.where(to_id: current_member.id).page(params[:page]).reverse_order
   end
 
   def froms
-    @thanks = Thank.page(params[:page]).reverse_order
+    @thanks = Thank.where(from_id: current_member.id).page(params[:page]).reverse_order
   end
 
   private

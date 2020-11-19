@@ -22,6 +22,18 @@ p{
   word-break:normal;// 英語は単語毎、日本語は範囲で自動改行
 }
 
+a:link {
+  color: #000000;
+}
+a:visited {
+  color: #000000;
+}
+
+.btn:hover{
+  background-color:#fef4f4;
+}
+
+
 // devise
 .bootstrap-date {
   display: inline-block;
@@ -42,6 +54,8 @@ p{
 .content-member_name{
   display: flex;
   flex-direction: row;
+  align-items: center;
+
 }
 
 .content-header{
@@ -70,7 +84,7 @@ p{
   display: flex;
   position: absolute;
   right: 8px;
-  bottom: 0px;
+  bottom: 3px;
 }
 
 .icon{
@@ -150,16 +164,26 @@ p{
   }
 }
 
-.comment-box {
+hr:nth-child(1){
+  margin-top:30px;
+  margin-bottom:10px;
+}
+
+hr{
+  margin-top:50px;
+  margin-bottom:25px;
+}
+
+.comment-text {
   position   : relative;                /* 指定した分だけ相対的に移動 */
   padding: 10px;                        /* テキストの前後の余白 */
   background-color: rgba(102, 102, 255, 0.50);       /* 背景色（透明度） */
-  width: 80%;                          /* 吹き出し全体の幅 */
-  left : 40%;                           /* 表示位置 */
+  width: 100%;                          /* 吹き出し全体の幅 */
+  left : 50%;                           /* 表示位置 */
   transform: translate(-50%);           /* 表示位置の調整 */
   margin: 10px 0;
 }
-.comment-box:after{
+.comment-text:after{
   border-bottom: 12px solid rgba(102, 102, 255, 0.50); /* 吹き出し口の高さ・色 */
   border-left: 8px solid transparent;    /* 吹き出し口の幅１／２ */
   border-right: 8px solid transparent;   /* 吹き出し口の幅１／２ */
@@ -167,4 +191,12 @@ p{
   left : 2%;                      /* 吹き出し口の横位置 */
   content: "";                       /* コンテンツの挿入 */
   position: absolute;                /* 親要素を基準 */
+}
+
+.comment-box{
+  margin-bottom:30px;
+}
+
+.post-image{
+  margin:20px 10px;
 }

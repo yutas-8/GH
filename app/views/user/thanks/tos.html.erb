@@ -1,6 +1,2 @@
-  <% @thanks.each do |thank| %>
-    <% if thank.to_id == current_member.id %><!--自分に関係ないものは非表示-->
-      <%= render "user/thanks/thank_index", thank: thank %>
-    <% end %>
-  <% end %>
+  <%= render "layouts/thank_index", thanks: @thanks %>
   <%= paginate @thanks %>

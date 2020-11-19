@@ -7,12 +7,7 @@
     <div class="post_<%= @post.id %> content-box">
       <div class="content-member_name">
         <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-        <%= @post.member.first_name + " " + @post.member.last_name %>
-      </div>
-      <div class="content-bottom_right">
-        <i class="far fa-comment-dots icon"></i><%= @post.post_comments.count %>
-        <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
-        <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
+        <%= link_to @post.member.first_name + " " + @post.member.last_name, @post.member %>
       </div>
       <div class="content-top_right">
         <% if @post.member_id == current_member.id %>
@@ -26,26 +21,32 @@
       <p class= "content-body">
         <%=safe_join(@post.body.split("\n"),tag(:br))%><!--text_areaで入力した通りの改行が反映-->
       </p>
-      <div>
-        <%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %>
+      <div class= "post-image">
+        <%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive img-rounded" %>
+      </div>
+      <div class="content-bottom_right">
+        <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
+        <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
+        <div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %>
       </div>
     </div>
 
     <div>
       <hr class="hr-text" data-content="コメント一覧"><!--区切り線-->
       <% @post.post_comments.each do |post_comment| %>
-      <div>
+      <div class="comment-box">
         <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
         <%= post_comment.member.first_name +  post_comment.member.last_name %>
-        <span class="content-top_right">
+
+        <p class="comment-text">
+          <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+        </p>
+         <span class="content-top_right">
           <%= post_comment.created_at.strftime('%F %T') %>
           <% if post_comment.member_id == current_member.id %>
             <%= link_to "", post_post_comment_path(post_comment.post, post_comment), class: "fas fa-trash-alt icon-trash" ,method: :delete,"data-confirm" => "本当に消しますか？" %>
           <% end %>
         </span>
-        <p class="comment-box">
-          <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
-        </p>
       </div>
       <% end %>
     </div>

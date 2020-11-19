@@ -12,20 +12,7 @@
   </div>
   <div class="col-xs-4">
     貰った新着ありがとう
-    <% @thanks.each do |thank| %>
-    <% if thank.to_id == current_member.id %>
-    <div class= "content-box">
-      <div class= "content-body">
-        <%= thank.body %>
-      </div>
-      <div class="content-top_right">
-        <%= attachment_image_tag thank.from, :profile_image, :fill, 20, 20, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-        <%= thank.from.first_name + " " + thank.from.last_name %>
-        <%= thank.created_at.strftime('%F %T') %>
-      </div>
-    </div>
-    <% end %>
-    <% end %>
+    <%= render "layouts/thank_index", thanks: @thanks %>
   </div>
     <!--誕生日-->
   <div class="col-xs-4">
