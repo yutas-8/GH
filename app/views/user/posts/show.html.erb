@@ -1,46 +1,59 @@
 <div class="row">
   <div class="col-xs-4">
     <%= render "layouts/post-index", posts: @posts %>
+    <%= paginate @posts %>
   </div>
   <div class="col-xs-8">
     <div class="post_<%= @post.id %> content-box">
-      <div>
-      <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
-      <%= @post.member.first_name + " " + @post.member.last_name %>
+      <div class="content-member_name">
+        <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+        <%= link_to @post.member.first_name + " " + @post.member.last_name, @post.member %>
       </div>
-      <div>
-      <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
-      <div class="praise-btn"><%= render "user/praises/praise-btn", post: @post %></div>
-      <div class="cheering-btn"><%= render "user/cheerings/cheering-btn", post: @post %></div>
-
-      <% if @post.member_id == current_member.id %>
-        <%= link_to "編集", edit_post_path %>
-        <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %>
-      <% end %>
+      <div class="content-top_right">
+        <% if @post.member_id == current_member.id %>
+          <%= link_to "", edit_post_path, class: "fas fa-edit icon-edit" %><!--編集ボタン-->
+          <%= link_to "", post_path(@post), class: "fas fa-trash-alt icon-trash", method: :delete,"data-confirm" => "本当に消しますか？" %><!--削除ボタン-->
+        <% end %>
       </div>
-
-
-      <h2><%= @post.title %></h2>
-      <div class= "content-body">
-        <%= @post.body %>
+      <h2 class= "content-header">
+        <%= @post.title %>
+      </h2>
+      <p class= "content-body">
+        <%=safe_join(@post.body.split("\n"),tag(:br))%><!--text_areaで入力した通りの改行が反映-->
+      </p>
+      <div class= "post-image">
+        <%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive img-rounded" %>
       </div>
-      <div><%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %></div>
+      <div class="content-bottom_right">
+        <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
+        <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
+        <div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %>
+      </div>
     </div>
+
     <div>
-      <br>コメント欄↓
+      <hr class="hr-text" data-content="コメント一覧"><!--区切り線-->
       <% @post.post_comments.each do |post_comment| %>
+      <div class="comment-box">
         <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
         <%= post_comment.member.first_name +  post_comment.member.last_name %>
-        <%= post_comment.comment %>
-        <%= post_comment.created_at.strftime('%F %T') %>
-      <div>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+
+        <p class="comment-text">
+          <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+        </p>
+         <span class="content-top_right">
+          <%= post_comment.created_at.strftime('%F %T') %>
+          <% if post_comment.member_id == current_member.id %>
+            <%= link_to "", post_post_comment_path(post_comment.post, post_comment), class: "fas fa-trash-alt icon-trash" ,method: :delete,"data-confirm" => "本当に消しますか？" %>
+          <% end %>
+        </span>
       </div>
       <% end %>
     </div>
-    <div>
+    <hr class="hr-text" data-content="コメント入力"><!--区切り線-->
+    <div class="form-group">
       <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-        <%= f.text_area :comment, rows:"3", placeholder: "リアクションをする" %>
+        <%= f.text_area :comment, placeholder: "リアクションをする", size: "10x3", class: "form-control-static col-xs-12" %>
         <%= f.submit "送信", class: "button" %>
       <% end %>
     </div>

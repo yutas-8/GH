@@ -1,3 +1,4 @@
+<% @thanks.each do |thank| %>
 <div class = "content-box">
   <div class= "content-member_name">
     <%= attachment_image_tag thank.to, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
@@ -6,17 +7,17 @@
   <p class= "content-body">
     <%= thank.body %>
   </p>
-  <div class="content-icon">
+  <div class="content-bottom_right">
     <% if thank.from_id == current_member.id %>
-      <%= link_to "編集", edit_thank_path(thank.id), class: "btn btn-info btn-xs " %>
-      ,
-      <%= link_to "削除", thank_path(thank.id), method: :delete, class: "btn btn-danger btn-xs" %>
+      <%= link_to "", edit_thank_path(thank.id), class: "fas fa-edit icon-edit" %><!--編集ボタン-->
+      <%= link_to "", thank_path(thank.id), method: :delete,"data-confirm" => "本当に消しますか？", class: "fas fa-trash-alt icon-trash" %><!--削除ボタン-->
     <% else %>
       <%= attachment_image_tag thank.from, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
       <%= thank.from.first_name + " " + thank.from.last_name %>
     <% end %>
   </div>
-  <div class="content-date">
+  <div class="content-top_right">
     <%= thank.created_at.strftime('%F %T') %>
   </div>
 </div>
+<% end %>

@@ -3,7 +3,7 @@
     <div class= "content-member_name">
     <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
     </div>
-    <% if current_member %>
+    <% if @member == current_member.id %>
       <div>貰ったありがとう：<%= link_to current_member.to_thanks.count, tos_path %></div>
       <div>贈ったありがとう：<%= link_to current_member.from_thanks.count, froms_path %></div>
     <% else %>
@@ -24,7 +24,9 @@
         <td><%= @member.introduction %></td>
       </tr>
     </table>
-    <%= link_to "", edit_member_path(current_member), class: "fas fa-edit content-icon" %>
+    <div class="content-bottom_right">
+      <%= link_to "", edit_member_path(current_member), class: "fas fa-edit icon-edit" %><!--編集ボタン-->
+    </div>
   </div>
 
   <div class="col-xs-9">
@@ -36,13 +38,13 @@
       <p class= "content-body">
         <%= post.body.truncate(30, omission: "...") %>
       </p>
-      <div class="content-date">
+      <div class="content-top_right">
         <%= post.created_at.strftime('%F') %>
       </div>
-      <div class="content-icon">
-        <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+      <div class="content-bottom_right">
         <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
         <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
+        <div class="far fa-comment-dots icon"></div><%= post.post_comments.count %>
       </div>
     <% end %>
     <% end %>
