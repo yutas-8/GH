@@ -24,7 +24,9 @@
         <td><%= @member.introduction %></td>
       </tr>
     </table>
-    <%= link_to "", edit_member_path(current_member), class: "fas fa-edit content-icon" %>
+    <div class="content-bottom_right">
+      <%= link_to "", edit_member_path(current_member), class: "fas fa-edit icon-edit" %><!--編集ボタン-->
+    </div>
   </div>
 
   <div class="col-xs-9">
@@ -36,10 +38,10 @@
       <p class= "content-body">
         <%= post.body.truncate(30, omission: "...") %>
       </p>
-      <div class="content-date">
+      <div class="content-top_right">
         <%= post.created_at.strftime('%F') %>
       </div>
-      <div class="content-icon">
+      <div class="content-bottom_right">
         <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
         <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
         <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>

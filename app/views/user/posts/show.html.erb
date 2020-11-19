@@ -1,30 +1,37 @@
 <div class="row">
   <div class="col-xs-4">
     <%= render "layouts/post-index", posts: @posts %>
+    <%= paginate @posts %>
   </div>
   <div class="col-xs-8">
     <div class="post_<%= @post.id %> content-box">
-      <div>
+      <div class="content-member_name">
       <%= attachment_image_tag @post.member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
       <%= @post.member.first_name + " " + @post.member.last_name %>
       </div>
-      <div>
-      <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
-      <div class="praise-btn"><%= render "user/praises/praise-btn", post: @post %></div>
-      <div class="cheering-btn"><%= render "user/cheerings/cheering-btn", post: @post %></div>
-
+      <div class="content-bottom_right">
+      <i class="far fa-comment-dots icon"></i><%= @post.post_comments.count %>
+      <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
+      <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
+      </div>
+      <div class="content-top_right">
       <% if @post.member_id == current_member.id %>
-        <%= link_to "編集", edit_post_path %>
-        <%= link_to "削除", post_path(@post), method: :delete,"data-confirm" => "本当に消しますか？" %>
+        <%= link_to "", edit_post_path, class: "fas fa-edit icon-edit" %><!--編集ボタン-->
+        <%= link_to "", post_path(@post), class: "fas fa-trash-alt icon-trash", method: :delete,"data-confirm" => "本当に消しますか？" %><!--削除ボタン-->
       <% end %>
       </div>
 
 
-      <h2><%= @post.title %></h2>
-      <div class= "content-body">
-        <%= @post.body %>
+
+      <h2 class= "content-header">
+        <%= @post.title %>
+      </h2>
+      <p class= "content-body">
+        <%=safe_join(@post.body.split("\n"),tag(:br))%><!--text_areaで入力した通りの改行が反映-->
+      </p>
+      <div>
+        <%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %>
       </div>
-      <div><%= attachment_image_tag @post, :image, format: "jpeg", class: "img-responsive" %></div>
     </div>
     <div>
       <br>コメント欄↓

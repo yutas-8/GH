@@ -18,7 +18,7 @@
       <div class= "content-body">
         <%= thank.body %>
       </div>
-      <div class="content-date">
+      <div class="content-top_right">
         <%= attachment_image_tag thank.from, :profile_image, :fill, 20, 20, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
         <%= thank.from.first_name + " " + thank.from.last_name %>
         <%= thank.created_at.strftime('%F %T') %>

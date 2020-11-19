@@ -34,7 +34,7 @@ p{
   flex-direction: column;
   border:1px solid #d8dde5;
   border-radius: 8px;
-  padding:10px 16px;
+  padding:15px 16px;
   text-decoration: none;
   position:relative;
 }
@@ -56,20 +56,37 @@ p{
 .content-body{
   display: flex;
   flex-direction: row;
-  margin: 5px;
+  margin: 12px 8px;
 }
 
-.content-date{
+.content-top_right{
   display: flex;
   position: absolute;
   right: 8px;
   color: #808080;
 }
 
-.content-icon{
+.content-bottom_right{
   display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
 
+.icon{
+  margin-left:5px;
+}
+
+.icon-trash{
+  margin-left:10px;
+  color:#ff0000;
+  font-size: 1.2em;
+}
+
+.icon-edit{
+  margin-left:5px;
+  color:#000080;
+  font-size: 1.2em;
 }
 
 .button {
