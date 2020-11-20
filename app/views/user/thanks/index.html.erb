@@ -1,11 +1,18 @@
 <div class="row">
+  <div class="thank-visual">
+    <div class="thank-visual-content">
+      <div class="thank-visual-text">今日のありがとう<%= @today_thanks.count %>件</div>
+      <div class="thank-visual-text">今月のありがとう<%= @this_month_thanks.count %>件</br>
+      （前月比 : <%= @month_to_month_thanks %>）
+      </div>
+    </div>
+  </div>
+
   <div class="col-xs-7">
-    <div>今日のありがとう<%= @today_thanks.count %>件</div>
-    <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
+    <h3>ありがとう一覧</h3>
     <%= render "layouts/thank_index", thanks: @thanks %>
     <%= paginate @thanks %>
   </div>
-
   <div class="col-xs-5">
     <h3 class="col-xs-offset-2">ありがとうを贈る</h3>
     <%= render "layouts/thank_form" %>

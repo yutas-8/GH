@@ -1,3 +1,71 @@
 // Place all the styles related to the user/Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: .5;
+  &:before {
+    content: '';
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+
+    padding: 0 .5em;
+    line-height: 1.5em;
+    color: #818078;
+    background-color: #fcfcfa;
+  }
+}
+
+hr:nth-child(1){
+  margin-top:30px;
+  margin-bottom:10px;
+}
+
+hr{
+  margin-top:50px;
+  margin-bottom:25px;
+}
+
+.comment-text {
+  position   : relative;                /* 指定した分だけ相対的に移動 */
+  padding: 10px;                        /* テキストの前後の余白 */
+  background-color: rgba(102, 102, 255, 0.50);       /* 背景色（透明度） */
+  width: 100%;                          /* 吹き出し全体の幅 */
+  left : 50%;                           /* 表示位置 */
+  transform: translate(-50%);           /* 表示位置の調整 */
+  margin: 10px 0;
+}
+.comment-text:after{
+  border-bottom: 12px solid rgba(102, 102, 255, 0.50); /* 吹き出し口の高さ・色 */
+  border-left: 8px solid transparent;    /* 吹き出し口の幅１／２ */
+  border-right: 8px solid transparent;   /* 吹き出し口の幅１／２ */
+  top: -12px;                             /* 吹き出し口の位置調整 */
+  left : 2%;                      /* 吹き出し口の横位置 */
+  content: "";
+  position: absolute;
+}
+
+.comment-box{
+  margin-bottom:30px;
+}
+
+.post-image{
+  margin:20px 10px;
+}
