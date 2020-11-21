@@ -1,4 +1,5 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_member!
   def index
     @posts = Post.page(params[:page]).reverse_order
   end

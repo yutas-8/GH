@@ -55,7 +55,10 @@ a:visited {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
 
+.member_img{
+  margin-right:5px;
 }
 
 .content-header{
@@ -70,7 +73,7 @@ a:visited {
 .content-body{
   display: flex;
   flex-direction: row;
-  margin: 12px 8px;
+  margin: 8px 8px 24px;
 }
 
 .content-top_right{
@@ -93,14 +96,26 @@ a:visited {
 
 .icon-trash{
   margin-left:10px;
-  color:#ff0000;
   font-size: 1.2em;
+}
+
+.icon-trash:link  {
+  color:#ff0000;
+}
+.icon-trash:visited {
+  color:#ff0000;
 }
 
 .icon-edit{
   margin-left:5px;
-  color:#000080;
   font-size: 1.2em;
+}
+
+.icon-edit:link  {
+  color:#000080;
+}
+.icon-edit:visited {
+  color:#000080;
 }
 
 .button {
@@ -126,31 +141,31 @@ a:visited {
 // top
 .header-visual{
   width: 100%;
-  height: 128px;
-  background-image: url(top-img.jpg);//ここは企業のイメージで変更
+  height: 170px;
+  background-image: url(tree.2.jpg);//ここは企業のイメージで変更
   background-size: cover;
-  background-position: center;
+  background-position: 0 480px;
 }
 
-.thank-visual{
-  width: 100%;
-  height: 150px;
-  background-image: url(thank_1.jpg);
-  background-size: cover;
-  background-position: bottom right ;
-}
+// .thank-visual{
+//   width: 100%;
+//   height: 150px;
+//   background-image: url(thank_1.jpg);
+//   background-size: cover;
+//   background-position: bottom right ;
+// }
 
-.thank-visual-content{
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  padding-top:30px;
-}
+// .thank-visual-content{
+//   width: 50%;
+//   height: 100%;
+//   text-align: center;
+//   padding-top:30px;
+// }
 
-.thank-visual-text{
-  margin-bottom:15px;
-  font-size:20px;
-}
+// .thank-visual-text{
+//   margin-bottom:15px;
+//   font-size:20px;
+// }
 
 // header
 header {
@@ -167,7 +182,7 @@ header {
 
 .header-inner {
   position: relative;
-  height: 77px;
+  height: 120px;
   border-radius: 32px;
   background-color: #ffffff;
   box-shadow: 0px 3px 13.5px 1.5px rgba(18, 108, 153, 0.3);//影の色は企業イメージカラーに変更
@@ -221,7 +236,7 @@ header {
 .footer-content{
   width: 100%;
   height: 100px;
-  background-image: url(top-img.jpg);
+  background-image: url(tree.2.jpg);
   background-position: bottom;
   margin-top:80px;
   position: relative;

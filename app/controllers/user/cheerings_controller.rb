@@ -1,4 +1,5 @@
 class User::CheeringsController < ApplicationController
+  before_action :authenticate_member!
   def create
     @post = Post.find(params[:post_id])
     @praise = @post.cheerings.create(member_id: current_member.id)
