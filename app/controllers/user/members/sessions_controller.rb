@@ -4,9 +4,13 @@ class User::Members::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    if admin_signed_in?
+      redirect_to admin_members_path
+    else
+      super
+    end
+  end
 
   # POST /resource/sign_in
   # def create

@@ -2,7 +2,7 @@
     <div class="post_<%= post.id %>">
       <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
         <div class= "content-member_name">
-          <%= attachment_image_tag post.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+          <%= attachment_image_tag post.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle member_img" %>
           <%= post.member.first_name + " " + post.member.last_name  %>
         </div>
         <div class= "content-header">
