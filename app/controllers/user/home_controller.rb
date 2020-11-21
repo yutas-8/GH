@@ -11,6 +11,8 @@ class User::HomeController < ApplicationController
     @next_birthday_members = Member.where("cast(strftime('%m', birthday) as int) = ?", Time.now.next_month.month)
     # 投稿
     @posts = Post.order(created_at: :desc).limit(3)
-
+  end
+  
+  def about
   end
 end
