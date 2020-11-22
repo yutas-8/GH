@@ -2,7 +2,7 @@
 <div class= "row">
   <!--新着投稿-->
   <div class="col-xs-4">
-    <h3>投稿（直近3件）</h3>
+    <h3>投稿（直近5件）</h3>
     <%= render "layouts/post-index", posts: @posts %>
     <%= link_to "他の投稿も見る", posts_path %>
   </div>
@@ -29,7 +29,7 @@
 
     <div>今日のありがとう<%= @today_thanks.count %>件</div>
     <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
-    <h3>ありがとう(直近3件)</h3>
+    <h3>ありがとう(直近5件)</h3>
     <%= render "layouts/thank_index", thanks: @thanks %>
   </div>
     <!--誕生日-->

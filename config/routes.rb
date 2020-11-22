@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     get "froms" => "thanks#froms", as: "froms"
     resources :posts, only: [:show, :new, :create, :edit, :update, :destroy, :index] do
       resources :post_comments, only: [:create, :destroy]
-      resource :praises, only: [:create, :destroy]
       resource :cheerings, only: [:create, :destroy]
+      resource :praises, only: [:create, :destroy]
     end
   end
 
