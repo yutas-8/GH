@@ -16,7 +16,8 @@ class Admin::MembersController < ApplicationController
   end
 
   private
-  def member_params
-    params.require(:member).permit(:is_delete)
-  end
+
+    def member_params
+      params.require(:member).permit(:is_delete)
+    end
 end

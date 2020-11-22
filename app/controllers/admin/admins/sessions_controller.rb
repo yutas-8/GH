@@ -8,7 +8,7 @@ class Admin::Admins::SessionsController < Devise::SessionsController
     if member_signed_in?
       redirect_to root_path
     else
-      super#親
+      super
     end
   end
 
