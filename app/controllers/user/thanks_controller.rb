@@ -4,15 +4,15 @@ class User::ThanksController < ApplicationController
   def index
     @thanks = Thank.page(params[:page]).reverse_order
     @thank = Thank.new
-    @today_thanks = Thank.where("created_at >= ?", Date.today)
-    @this_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.now.month)
-    @prev_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.now.prev_month.month)
+    @today_thanks = Thank.where("created_at >= ?", Time.zone.today)
+    @this_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.zone.now.month)
+    @prev_month_thanks = Thank.where("cast(strftime('%m', created_at) as int) = ?", Time.zone.now.prev_month.month)
     @month_to_month_thanks = @this_month_thanks.count - @prev_month_thanks.count
 
     @members = Member.all
     @member_name_list = {} # hash 連想配列
     @members.each do |member|
-      fullname = member.first_name + ' ' + member.last_name # セレクトボックスでfullname表示
+      fullname = "#{member.first_name} #{member.last_name}" # セレクトボックスでfullname表示
       @member_name_list[fullname] = member.id # fullnameとidを紐付ける
     end
   end
@@ -34,7 +34,7 @@ class User::ThanksController < ApplicationController
     @members = Member.all
     @member_name_list = {}
     @members.each do |member|
-      fullname = member.first_name + ' ' + member.last_name
+      fullname = "#{member.first_name} #{member.last_name}"
       @member_name_list[fullname] = member.id
     end
   end
@@ -51,10 +51,10 @@ class User::ThanksController < ApplicationController
 
   def destroy
     @thank = Thank.find(params[:id])
-    if @thank.from_id == current_member.id
-      @thank.destroy
-      redirect_to thanks_path(current_member)
-    end
+    return unless @thank.from_id == current_member.id
+
+    @thank.destroy
+    redirect_to thanks_path(current_member)
   end
 
   def tos

@@ -153,8 +153,8 @@
 
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
-Metrics/AbcSize:
-  Max: 38
+# Metrics/AbcSize:
+#   Max: 38
 
 # Offense count: 8
 # RSpec/EmptyExampleGroup:
@@ -171,10 +171,10 @@ Metrics/AbcSize:
 # Offense count: 2
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: strict, flexible
-Rails/Date:
-  Exclude:
-    - 'app/controllers/user/home_controller.rb'
-    - 'app/controllers/user/thanks_controller.rb'
+# Rails/Date:
+#   Exclude:
+#     - 'app/controllers/user/home_controller.rb'
+#     - 'app/controllers/user/thanks_controller.rb'
 
 # Offense count: 2
 # Configuration parameters: EnforcedStyle.
@@ -197,16 +197,16 @@ Rails/InverseOf:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/controllers/user/home_controller.rb'
-    - 'app/controllers/user/thanks_controller.rb'
+# Rails/TimeZone:
+#   Exclude:
+#     - 'app/controllers/user/home_controller.rb'
+#     - 'app/controllers/user/thanks_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/CaseLikeIf:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
+# Style/CaseLikeIf:
+#   Exclude:
+#     - 'app/controllers/application_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -225,45 +225,45 @@ Style/CaseLikeIf:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/GlobalStdStream:
-  Exclude:
-    - 'config/environments/production.rb'
+# Style/GlobalStdStream:
+#   Exclude:
+#     - 'config/environments/production.rb'
 
 # Offense count: 1
 # Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/user/thanks_controller.rb'
+# Style/GuardClause:
+#   Exclude:
+#     - 'app/controllers/user/thanks_controller.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: SafeForConstants.
-Style/RedundantFetchBlock:
-  Exclude:
-    - 'config/puma.rb'
+# Style/RedundantFetchBlock:
+#   Exclude:
+#     - 'config/puma.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'app/models/member.rb'
+# Style/RedundantSelf:
+#   Exclude:
+#     - 'app/models/member.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Style/StringConcatenation:
-  Exclude:
-    - 'app/controllers/user/thanks_controller.rb'
+# Style/StringConcatenation:
+#   Exclude:
+#     - 'app/controllers/user/thanks_controller.rb'
 
 # Offense count: 56
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
+# Style/StringLiterals:
+#   Enabled: false
 
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
 # SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
+# Style/SymbolArray:
+#   EnforcedStyle: brackets

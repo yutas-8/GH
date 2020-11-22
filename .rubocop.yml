@@ -16,10 +16,11 @@ AllCops:
     - 'bin/**/*'
     - 'db/**/*'
     - 'tmp/**/*'
-    #以下を分からないから一旦除外する
+    #以下を触れたことがなく分からないから一旦除外する
     - "config/environments/development.rb"
     - "config/initializers/devise.rb"
     - "config/puma.rb"
+    - 'config/environments/production.rb'
     - "spec/**/*"#まだトライ出来てないので除外
 
 Rails:
@@ -173,5 +174,34 @@ Style/RegexpLiteral:
 Style/SlicingWithRange:
   Enabled: true
 
+# Controllerの冒頭のclassの表記などに反応したので除外
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# %w(),%i()では見ずらいので、[:index, :update, :destroy]が許されるように除外
+Style/SymbolArray:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+
+# ダブルクォートを使えるようにする(シングルよりも使うことが多いのでこっちを優先)
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# modelに多いが、ローカル変数とメソッドの呼び出しの区別をつけるのに分かりやすくする為
+Style/RedundantSelf:
+  Enabled: false
+
+# if文の中身が1行の場合警告されるようなので変更
+Style/GuardClause:
+  MinBodyLength: 5
+
+# if-elseif構文でかけるようにしたい為
+Style/CaseLikeIf:
+  Enabled: false
+
+# def...endの間の処理が多いと良くない（代入、呼び出し、分岐の3つの観点から見て）［これから減らす努力をする］
+Metrics/AbcSize:
+  Max: 50
