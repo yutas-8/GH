@@ -11,8 +11,8 @@ class User::HomeController < ApplicationController
     @from_thank_ranks = Member.find(@this_month_thanks.group(:from_id).order("count(from_id) desc").limit(3).pluck(:from_id))
     @to_thank_ranks = Member.find(@this_month_thanks.group(:to_id).order("count(to_id) desc").limit(3).pluck(:to_id))
     # 誕生日
-    @birthday_members = Member.where("cast(strftime('%m', birthday) as int) = ?", Time.zone.now.month)
-    @next_birthday_members = Member.where("cast(strftime('%m', birthday) as int) = ?", Time.zone.now.next_month.month)
+    @birthday_members = Member.where("cast(strftime('%m', birthday) as int) = ?", Time.zone.now.month).sort_by { |member| member.birthday.day }
+    @next_birthday_members = Member.where("cast(strftime('%m', birthday) as int) = ?", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
     # 投稿
     @posts = Post.order(created_at: :desc).limit(5)
   end
