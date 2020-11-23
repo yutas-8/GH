@@ -85,9 +85,11 @@ Metrics/ClassLength:
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 15
   Exclude:
     - 'lib/tasks/dev.rake'
+    - 'app/controllers/user/home_controller.rb' # PF-ghのときだけ除外
+  Max: 15
+
 
 Metrics/ModuleLength:
   CountComments: false
@@ -200,4 +202,6 @@ Style/CaseLikeIf:
 
 # def...endの間の処理が多いと良くない（代入、呼び出し、分岐の3つの観点から見て）［これから減らす努力をする］
 Metrics/AbcSize:
-  Max: 50
+  Enabled:
+  - "home_controller.rb" # PF-ghのときだけ除外
+  Max: 30
