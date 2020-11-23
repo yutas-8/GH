@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_member!
+  before_action :correct_member, only: [:edit, :update]
   def index
     @posts = Post.page(params[:page]).reverse_order
   end
@@ -41,5 +42,10 @@ class User::PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :body, :image)
+    end
+
+    def correct_member
+      @post = Post.find(params[:id])
+      redirect_to posts_path unless @post.member == current_member
     end
 end

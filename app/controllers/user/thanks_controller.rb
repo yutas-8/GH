@@ -1,5 +1,6 @@
 class User::ThanksController < ApplicationController
   before_action :authenticate_member!
+  before_action :correct_member, only: [:edit, :update]
 
   def index
     @thanks = Thank.page(params[:page]).reverse_order
@@ -69,5 +70,10 @@ class User::ThanksController < ApplicationController
 
     def thank_params
       params.require(:thank).permit(:body)
+    end
+
+    def correct_member
+      @thank = Thank.find(params[:id])
+      redirect_to thanks_path unless @thank.from == current_member
     end
 end

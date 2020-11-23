@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-xs-3 content-box">
     <div class= "content-member_name">
-    <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+      <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
     </div>
+
     <% if @member.id == current_member.id %>
       <div>貰ったありがとう：<%= link_to @member.to_thanks.count, tos_path %></div>
       <div>贈ったありがとう：<%= link_to @member.from_thanks.count, froms_path %></div>
@@ -24,29 +25,31 @@
         <td><%= @member.introduction %></td>
       </tr>
     </table>
+    <% if @member.id == current_member.id %>
     <div class="content-bottom_right">
       <%= link_to "", edit_member_path(current_member), class: "fas fa-edit icon-edit" %><!--編集ボタン-->
     </div>
+    <% end %>
   </div>
 
   <div class="col-xs-9">
     <% @posts.each do |post| %>
-    <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
-      <h4 class= "content-header">
-        <%= post.title.truncate(20, omission: "...") %>
-      </h4>
-      <p class= "content-body">
-        <%= post.body.truncate(30, omission: "...") %>
-      </p>
-      <div class="content-top_right">
-        <%= post.created_at.strftime('%F') %>
-      </div>
-      <div class="content-bottom_right">
-        <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
-        <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
-        <div class="far fa-comment-dots icon"></div><%= post.post_comments.count %>
-      </div>
-    <% end %>
+      <%= link_to post_path(post.id), class: "content-box btn btn-default" do %>
+        <h4 class= "content-header">
+          <%= post.title.truncate(20, omission: "...") %>
+        </h4>
+        <p class= "content-body">
+          <%= post.body.truncate(30, omission: "...") %>
+        </p>
+        <div class="content-top_right">
+          <%= post.created_at.strftime('%F') %>
+        </div>
+        <div class="content-bottom_right">
+          <div class="praise-count"><%= render "user/praises/praise-count", post: post %></div>
+          <div class="cheering-count"><%= render "user/cheerings/cheering-count", post: post %></div>
+          <div class="far fa-comment-dots icon"></div><%= post.post_comments.count %>
+        </div>
+      <% end %>
     <% end %>
     <%= paginate @posts %>
   </div>
