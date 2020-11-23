@@ -1,0 +1,2 @@
+$(".post_<%= @post.id %> .cheering-btn").html("<%= j(render 'user/cheerings/cheering-btn', post: @post) %>");
+$(".post_<%= @post.id %> .cheering-count").html("<%= j(render 'user/cheerings/cheering-count', post: @post) %>");

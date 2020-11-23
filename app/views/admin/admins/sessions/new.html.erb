@@ -1,0 +1,26 @@
+<div class="row">
+<h2 class="col-xs-offset-2">管理者ログイン</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group col-xs-8 col-xs-offset-2">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-static col-xs-12"  %>
+    </div>
+
+    <div class="form-group col-xs-8 col-xs-offset-2">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control-static col-xs-12" %>
+    </div>
+
+    <div class="actions col-xs-8 col-xs-offset-2">
+      <%= f.submit "Log in", class: "btn btn-success" %><br />
+    </div>
+  <% end %>
+  <%= link_to "戻る", new_member_session_path, class:"pull-right" %>
+  <%#= render "admin/admins/shared/links" %>
+</div>
+
+
+
+
+

@@ -1,3 +1,6 @@
 <div class="row">
-  <%= render "layouts/post-index" %>
+  <div class="col-xs-4">
+    <%= render "layouts/post-index", posts: @posts %>
+    <%= paginate @posts %>
+  </div>
 </div>
