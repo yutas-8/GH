@@ -1,0 +1,11 @@
+<%= form_with model: @thank, local: true do |f| %>
+  <div class="form-group col-xs-8 col-xs-offset-2">
+    <%= f.select(:member_id, @member_name_list, {include_blank: "誰に？"}, {class: "form-control-static bootstrap-date"}) %>
+  </div>
+  <div class="form-group col-xs-9 col-xs-offset-2">
+    <%= f.text_area :body, autofocus: true, placeholder: "どんな感謝を送りますか？", size: "39x10", class: "form-control-static "  %>
+  </div>
+  <div class="form-group col-xs-8 col-xs-offset-2">
+    <%= f.submit "ありがとう", class: "button" %>
+  </div>
+<% end %>

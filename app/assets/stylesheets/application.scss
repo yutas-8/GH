@@ -15,3 +15,218 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+p{
+  word-break:normal;// 英語は単語毎、日本語は範囲で自動改行
+}
+
+a:link {
+  color: #000000;
+}
+a:visited {
+  color: #000000;
+}
+
+.btn:hover{
+  background-color:#fef4f4;
+}
+
+
+// devise
+.bootstrap-date {
+  display: inline-block;
+  width: auto;
+}
+
+// 全体
+.content-box{
+  display: flex;
+  flex-direction: column;
+  border:1px solid #d8dde5;
+  border-radius: 8px;
+  padding:15px 16px;
+  text-decoration: none;
+  position:relative;
+}
+
+.content-member_name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.member_img{
+  margin-right:5px;
+}
+
+.content-header{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  border-left: thick solid orange;
+  padding-left: 10px;
+
+}
+
+.content-body{
+  display: flex;
+  flex-direction: row;
+  margin: 8px 8px 24px;
+}
+
+.content-top_right{
+  display: flex;
+  position: absolute;
+  right: 8px;
+  color: #808080;
+}
+
+.content-bottom_right{
+  display: flex;
+  position: absolute;
+  right: 8px;
+  bottom: 3px;
+}
+
+.icon{
+  margin-left:5px;
+}
+
+.icon-trash{
+  margin-left:10px;
+  font-size: 1.2em;
+}
+
+.icon-trash:link  {
+  color:#ff0000;
+}
+.icon-trash:visited {
+  color:#ff0000;
+}
+
+.icon-edit{
+  margin-left:5px;
+  font-size: 1.2em;
+}
+
+.icon-edit:link  {
+  color:#000080;
+}
+.icon-edit:visited {
+  color:#000080;
+}
+
+.button {
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 12pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 8px 12px;
+  background    : #ffa64d;     /* 背景色:会社のイメージカラーに変える */
+  color         : #ffffff;     /* 文字色:背景色に合わせてバランスを取る */
+  line-height   : 0.8em;
+  transition    : .3s;
+  box-shadow    : 5px 5px 3px #666666;
+  border        : 2px solid #ffa64d;
+}
+.button:hover {
+  box-shadow    : none;
+  color         : #ffa64d;     /* 上記の背景色を反転させる */
+  background    : #ffffff;     /* 背景色反転に合わせてこちらも変更 */
+}
+
+// top
+.header-visual{
+  width: 100%;
+  height: 170px;
+  background-image: url(tree.2.jpg);//ここは企業のイメージで変更
+  background-size: cover;
+  background-position: 0 480px;
+}
+
+// header
+header {
+  width: 100%;
+  position: absolute;
+}
+
+.header-area {
+  width: 100%;
+  height: 80px;
+  padding: 0 80px;
+  margin-top: 24px;
+}
+
+.header-inner {
+  position: relative;
+  height: 120px;
+  border-radius: 32px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 13.5px 1.5px rgba(18, 108, 153, 0.3);//影の色は企業イメージカラーに変更
+  display: flex;
+  justify-content: space-between;//両端に
+  align-items: center;
+}
+
+.header-logo {
+}
+
+.header-log-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 28px;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.header-logo-mark {
+  height: 36px;
+  width: 20px;
+}
+
+.header-logo-text {
+  font-size:30px;
+
+}
+
+.header-nav {
+  overflow:hidden;
+}
+
+.header-item {
+  list-style: none;
+  float:left;
+  margin-right:2px;
+}
+
+.header-link {
+   text-decoration:none;
+  font-weight:bold;
+  padding:20px;
+}
+
+// footer
+
+.footer-content{
+  width: 100%;
+  height: 100px;
+  background-image: url(tree.2.jpg);
+  background-position: bottom;
+  margin-top:80px;
+  position: relative;
+}
+
+.footer-message{
+  line-height:100px;
+  text-align: center;
+}
+
+.footer-text{
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}

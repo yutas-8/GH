@@ -1,10 +1,12 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_member!
+  before_action :correct_member, only: [:edit, :update]
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
   end
@@ -37,7 +39,13 @@ class User::PostsController < ApplicationController
   end
 
   private
-  def post_params
-    params.require(:post).permit(:title, :body, :image)
-  end
+
+    def post_params
+      params.require(:post).permit(:title, :body, :image)
+    end
+
+    def correct_member
+      @post = Post.find(params[:id])
+      redirect_to posts_path unless @post.member == current_member
+    end
 end

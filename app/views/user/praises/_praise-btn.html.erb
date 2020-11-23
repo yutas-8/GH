@@ -1,0 +1,15 @@
+<% if post.praised_by?(current_member) %>
+  <p>
+    <%= link_to post_praises_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-laugh-beam" style="color: gold;"></i>
+    <%= post.praises.count %>
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_praises_path(post), method: :post, remote: true do %>
+    <i class="fas fa-meh"></i>
+    <%= post.praises.count %>
+    <% end %>
+  </p>
+<% end %>

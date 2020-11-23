@@ -1,17 +1,11 @@
 <div class="row">
-  <div class="col-xs-8">
-    <% @thanks.each do |thank| %>
-      <%= thank.body %>
-    <% end %>
-    ありがとう数<%= current_member.to_thanks.count %>
-    ありがとうした数<%= current_member.from_thanks.count %>
+  <div class="col-xs-7">
+    <h3>ありがとう一覧</h3>
+    <%= render "layouts/thank_index", thanks: @thanks %>
+    <%= paginate @thanks %>
   </div>
-
-  <div class="col-xs-4">
-    <%= form_with model: @thank, local: true do |f| %>
-      <%= f.select(:member_id, @member_name_list, {include_blank: "誰に？"}) %>
-      <%= f.text_area :body, autofocus: true, placeholder: "どんな感謝を送りますか？", rows: "3" %>
-      <%= f.submit "ありがとう" %>
-    <% end %>
+  <div class="col-xs-5">
+    <h3 class="col-xs-offset-2">ありがとうを贈る</h3>
+    <%= render "layouts/thank_form" %>
   </div>
 </div>
