@@ -1,11 +1,25 @@
 <div class= "row">
-  <div class= "">
-    <div>今日のありがとう<%= @today_thanks.count %>件</div>
-    <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
+
+  <!--新着投稿-->
+  <div class="col-xs-4">
+    <h3>投稿（直近5件）</h3>
+    <%= render "layouts/post-index", posts: @posts %>
+    <%= link_to "他の投稿も見る", posts_path %>
   </div>
-  <div class= "col-xs-5">
-    <table class="table table-striped">
-      <tr><th colspan="3">贈ったありがとう順位</th></tr>
+  <div class="col-xs-5">
+    <h3>ありがとう(直近5件)</h3>
+    <p class="thank-text">
+      《今日のありがとう<%= @today_thanks.count %>件 ,
+      今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）》
+    </p>
+    <%= render "layouts/thank_index", thanks: @thanks %>
+  </div>
+
+  <div class="col-xs-3">
+    <h3>ランキング</h3>
+    <div class="content-box">
+    <table class="table table-bordered">
+      <tr class="success"><th colspan="3">贈ったありがとう</th></tr>
       <% @from_thank_ranks.each.with_index(1) do |from, i| %>
       <tr>
         <th>第<%= i %>位</th>
@@ -14,10 +28,8 @@
       </tr>
       <% end %>
     </table>
-  </div>
-  <div class= "col-xs-5">
     <table class="table table-striped">
-      <tr><th colspan="3">貰ったありがとう順位</th></tr>
+      <tr class="success"><th colspan="3">貰ったありがとう</th></tr>
       <% @to_thank_ranks.each.with_index(1) do |to, i| %>
       <tr>
         <th>第<%= i %>位</th>
@@ -27,21 +39,10 @@
       <% end %>
     </table>
   </div>
-  <!--新着投稿-->
-  <div class="col-xs-4">
-    <h3>投稿（直近5件）</h3>
-    <%= render "layouts/post-index", posts: @posts %>
-    <%= link_to "他の投稿も見る", posts_path %>
-  </div>
-  <div class="col-xs-5">
-    <h3>ありがとう(直近5件)</h3>
-    <%= render "layouts/thank_index", thanks: @thanks %>
-  </div>
-    <!--誕生日-->
-  <div class="col-xs-3">
+  <!--誕生日-->
     <h3>誕生日</h3>
     <% if @birthday_members.any? %>
-      <table class="table table-striped">
+      <table class="table table-striped table-bordered">
         <tbody>
           <% @birthday_members.each do |member| %>
           <tr>
@@ -58,6 +59,14 @@
         </tbody>
       </table>
     <% end %>
-  </div>
 
+
+  <div class= "col-xs-4">
+    <div class="content-box">
+      <div>今日のありがとう<%= @today_thanks.count %>件</div>
+      <div>今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）</div>
+    </div>
+
+  </div>
+</div>
 </div>
