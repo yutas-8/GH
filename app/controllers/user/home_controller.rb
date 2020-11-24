@@ -2,7 +2,7 @@ class User::HomeController < ApplicationController
   before_action :authenticate_member!
   def top
     # ありがとう
-    @today_thanks = Thank.where("created_at >= ?", Time.zone.today)
+    @today_thanks = Thank.where(created_at: Time.zone.now.all_day)
     # 本番環境なら
     if Rails.env.production?
       @this_month_thanks = Thank.where("date_format(created_at, '%m') = '?'", Time.zone.now.month)
