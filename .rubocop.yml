@@ -205,3 +205,7 @@ Metrics/AbcSize:
   Enabled:
   - "home_controller.rb" # PF-ghのときだけ除外
   Max: 30
+
+# 見やすい用にする為に長文の時はドット区切りをする為
+Layout/DotPosition:
+  Enabled: false

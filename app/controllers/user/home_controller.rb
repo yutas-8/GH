@@ -8,14 +8,32 @@ class User::HomeController < ApplicationController
       @this_month_thanks = Thank.where("date_format(created_at, '%m') = '?'", Time.zone.now.month)
       @prev_month_thanks = Thank.where("date_format(created_at, '%m') = '?'", Time.zone.now.prev_month.month)
       # 誕生日
-      @birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
-      @next_birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
+      # @birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
+      # @next_birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
+
+      @birthday_members = Member.
+                          where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = '?'", Time.zone.now.month).
+                          select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
+                          order("day")
+      @next_birthday_members = Member.
+                               where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = '?'", Time.zone.now.next_month.month).
+                               select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
+                               order("day")
     else
       @this_month_thanks = Thank.where("strftime('%m', created_at) = '?'", Time.zone.now.month)
       @prev_month_thanks = Thank.where("strftime('%m', created_at) = '?'", Time.zone.now.prev_month.month)
       # 誕生日
-      @birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
-      @next_birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
+      # @birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
+      # @next_birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
+
+      @birthday_members = Member.
+                          where("strftime('%m', datetime(birthday, '+9 hours')) = '?'", Time.zone.now.month).
+                          select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
+                          order("day")
+      @next_birthday_members = Member.
+                               where("strftime('%m', datetime(birthday, '+9 hours')) = '?'", Time.zone.now.next_month.month).
+                               select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
+                               order("day")
     end
 
     @month_to_month_thanks = @this_month_thanks.count - @prev_month_thanks.count
