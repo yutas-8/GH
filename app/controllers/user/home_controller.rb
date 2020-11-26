@@ -1,5 +1,5 @@
 class User::HomeController < ApplicationController
-  before_action :authenticate_member!
+  before_action :authenticate_member!, only: [:top]
   def top
     # ありがとう
     @today_thanks = Thank.where(created_at: Time.zone.now.all_day)

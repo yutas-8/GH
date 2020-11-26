@@ -18,13 +18,13 @@
   <div class="col-xs-3">
     <h3>ランキング</h3>
     <div class="content-box">
-    <table class="table table-bordered">
+    <table class="table table-striped">
       <tr class="success"><th colspan="3">贈ったありがとう</th></tr>
       <% @from_thank_ranks.each.with_index(1) do |from, i| %>
       <tr>
-        <th>第<%= i %>位</th>
-        <th><%= from.first_name + " " + from.last_name %></th>
-        <td><%= from.from_thanks.count %></td>
+        <th class="col-xs-3">第<%= i %>位</th>
+        <td class="col-xs-6"><%= from.first_name + " " + from.last_name %></td>
+        <td class="col-xs-3"><%= from.from_thanks.count %></td>
       </tr>
       <% end %>
     </table>
@@ -32,32 +32,34 @@
       <tr class="success"><th colspan="3">貰ったありがとう</th></tr>
       <% @to_thank_ranks.each.with_index(1) do |to, i| %>
       <tr>
-        <th>第<%= i %>位</th>
-        <th><%= to.first_name + " " + to.last_name %></th>
-        <td><%= to.to_thanks.count %></td>
+        <th class="col-xs-3">第<%= i %>位</th>
+        <td class="col-xs-6"><%= to.first_name + " " + to.last_name %></td>
+        <td class="col-xs-3"><%= to.to_thanks.count %></td>
       </tr>
       <% end %>
     </table>
   </div>
   <!--誕生日-->
     <h3>誕生日</h3>
+    <div class="content-box">
     <% if @birthday_members.any? %>
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped">
         <tbody>
           <% @birthday_members.each do |member| %>
           <tr>
-            <td><%= member.first_name + " " + member.last_name %></td>
-            <td><%= member.birthday.strftime("%m月%d日") %></td>
+            <td class="col-xs-6"><%= member.first_name + " " + member.last_name %></td>
+            <td class="col-xs-6"><%= member.birthday.strftime("%m月%d日") %></td>
           </tr>
           <% end %>
           <% @next_birthday_members.each do |member| %>
           <tr>
-            <td><%= member.first_name + " " + member.last_name %></td>
-            <td><%= member.birthday.strftime("%m月%d日") %></td>
+            <td class="col-xs-6"><%= member.first_name + " " + member.last_name %></td>
+            <td class="col-xs-6"><%= member.birthday.strftime("%m月%d日") %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
     <% end %>
+    </div>
 </div>
 </div>
