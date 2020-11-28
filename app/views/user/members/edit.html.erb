@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-xs-8 col-xs-offset-3">
       <%= f.label "誕生日" %><br />
-      <%= f.date_select :birthday, {use_month_numbers:true, start_year: 1940, end_year: (Time.now.year - 14), default: Date.new(1989, 1, 1)}, {class: "form-control-static bootstrap-date"} %>
+      <%= f.date_select :birthday, {use_month_numbers:true, start_year: 1940, end_year: (Time.current.year - 14), default: Date.new(1989, 1, 1)}, {class: "form-control-static bootstrap-date"} %>
     </div>
     <div class="form-group col-xs-8 col-xs-offset-3">
       <%= f.label "自己紹介文" %><br />
