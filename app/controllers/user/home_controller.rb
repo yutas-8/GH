@@ -3,14 +3,10 @@ class User::HomeController < ApplicationController
   def top
     # ありがとう
     @today_thanks = Thank.where(created_at: Time.zone.now.all_day)
-    # 本番環境なら
+    # 本番環境とローカル環境で使える構文に変換
     if Rails.env.production?
       @this_month_thanks = Thank.where("date_format(created_at, '%m') = '?'", Time.zone.now.month)
       @prev_month_thanks = Thank.where("date_format(created_at, '%m') = '?'", Time.zone.now.prev_month.month)
-      # 誕生日
-      # @birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
-      # @next_birthday_members = Member.where("date_format(birthday, '%m') = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
-
       @birthday_members = Member.
                           where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = '?'", Time.zone.now.month).
                           select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
@@ -22,10 +18,6 @@ class User::HomeController < ApplicationController
     else
       @this_month_thanks = Thank.where("strftime('%m', created_at) = '?'", Time.zone.now.month)
       @prev_month_thanks = Thank.where("strftime('%m', created_at) = '?'", Time.zone.now.prev_month.month)
-      # 誕生日
-      # @birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.month).sort_by { |member| member.birthday.day }
-      # @next_birthday_members = Member.where("strftime('%m', birthday) = '?'", Time.zone.now.next_month.month).sort_by { |member| member.birthday.day }
-
       @birthday_members = Member.
                           where("strftime('%m', datetime(birthday, '+9 hours')) = '?'", Time.zone.now.month).
                           select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
@@ -35,7 +27,6 @@ class User::HomeController < ApplicationController
                                select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
                                order("day")
     end
-
     @month_to_month_thanks = @this_month_thanks.count - @prev_month_thanks.count
     @thanks = Thank.where(to_id: current_member.id).order(created_at: :desc).limit(5)
       # ありがとうのランキング
