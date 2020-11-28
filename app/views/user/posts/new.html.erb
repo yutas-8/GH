@@ -1,6 +1,5 @@
 <div class="row">
   <h3 class="form-group col-xs-8 col-xs-offset-3">新規投稿</h3>
-
   <%= form_with model: @post, local:true do |f| %>
     <div class="form-group col-xs-8 col-xs-offset-3">
       <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control-static col-xs-8" %>

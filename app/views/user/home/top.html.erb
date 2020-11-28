@@ -1,11 +1,11 @@
 <div class= "row">
-
   <!--新着投稿-->
   <div class="col-xs-4">
     <h3>投稿（直近5件）</h3>
     <%= render "layouts/post-index", posts: @posts %>
     <%= link_to "他の投稿も見る", posts_path %>
   </div>
+  <!--新着ありがとう-->
   <div class="col-xs-5">
     <h3>ありがとう(直近5件)</h3>
     <p class="thank-text">
@@ -14,52 +14,56 @@
     </p>
     <%= render "layouts/thank_index", thanks: @thanks %>
   </div>
-
   <div class="col-xs-3">
+    <!--ランキング-->
     <h3>ランキング</h3>
     <div class="content-box">
-    <table class="table table-striped">
-      <tr class="success"><th colspan="3">贈ったありがとう</th></tr>
-      <% @from_thank_ranks.each.with_index(1) do |from, i| %>
-      <tr>
-        <th class="col-xs-3">第<%= i %>位</th>
-        <td class="col-xs-7"><%= from.first_name + " " + from.last_name %></td>
-        <td class="col-xs-2"><%= from.from_thanks.count %></td>
-      </tr>
-      <% end %>
-    </table>
-    <table class="table table-striped">
-      <tr class="success"><th colspan="3">貰ったありがとう</th></tr>
-      <% @to_thank_ranks.each.with_index(1) do |to, i| %>
-      <tr>
-        <th class="col-xs-3">第<%= i %>位</th>
-        <td class="col-xs-7"><%= to.first_name + " " + to.last_name %></td>
-        <td class="col-xs-2"><%= to.to_thanks.count %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <!--誕生日-->
+      <table class="table table-striped">
+        <tr class="success">
+          <th colspan="3">贈ったありがとう</th>
+        </tr>
+        <% @from_thank_ranks.each.with_index(1) do |from, i| %>
+          <tr>
+            <th class="col-xs-3">第<%= i %>位</th>
+            <td class="col-xs-7"><%= from.first_name + " " + from.last_name %></td>
+            <td class="col-xs-2"><%= from.from_thanks.count %></td>
+          </tr>
+        <% end %>
+      </table>
+      <table class="table table-striped">
+        <tr class="success">
+          <th colspan="3">貰ったありがとう</th>
+        </tr>
+        <% @to_thank_ranks.each.with_index(1) do |to, i| %>
+        <tr>
+          <th class="col-xs-3">第<%= i %>位</th>
+          <td class="col-xs-7"><%= to.first_name + " " + to.last_name %></td>
+          <td class="col-xs-2"><%= to.to_thanks.count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <!--誕生日-->
     <h3>誕生日</h3>
     <div class="content-box">
-    <% if @birthday_members.any? %>
-      <table class="table table-striped">
-        <tbody>
-          <% @birthday_members.each do |member| %>
-          <tr>
-            <td class="col-xs-6"><%= member.first_name + " " + member.last_name %></td>
-            <td class="col-xs-6"><%= member.birthday.strftime("%m月%d日") %></td>
-          </tr>
-          <% end %>
-          <% @next_birthday_members.each do |member| %>
-          <tr>
-            <td class="col-xs-8"><%= member.first_name + " " + member.last_name %></td>
-            <td class="col-xs-4"><%= member.birthday.strftime("%m月%d日") %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
+      <% if @birthday_members.any? %>
+        <table class="table table-striped">
+          <tbody>
+            <% @birthday_members.each do |member| %>
+              <tr>
+                <td class="col-xs-6"><%= member.first_name + " " + member.last_name %></td>
+                <td class="col-xs-6"><%= member.birthday.strftime("%m月%d日") %></td>
+              </tr>
+            <% end %>
+            <% @next_birthday_members.each do |member| %>
+              <tr>
+                <td class="col-xs-8"><%= member.first_name + " " + member.last_name %></td>
+                <td class="col-xs-4"><%= member.birthday.strftime("%m月%d日") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
-</div>
+  </div>
 </div>

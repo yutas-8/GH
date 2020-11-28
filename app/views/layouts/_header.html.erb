@@ -1,57 +1,57 @@
 <% if member_signed_in? %>
-<header>
-	<div class="header-area">
-        <div class="header-inner">
-          <div class="header-logo">
-            <div class="header-log-link">
-              <!--会社の要望に合わせてロゴやtitleを変更する-->
-              <div class="header-logo-mark"></div> 
-        				<div class="header-logo-text"><%= link_to "株式会社 gh", root_path %></div>
-            </div>
+  <header>
+  	<div class="header-area">
+      <div class="header-inner">
+        <div class="header-logo">
+          <div class="header-log-link">
+            <!--会社の要望に合わせてロゴやtitleを変更する-->
+            <div class="header-logo-mark"></div>
+      				<div class="header-logo-text"><%= link_to "株式会社 gh", root_path %></div>
           </div>
-          <nav class="header-nav">
-            <ul>
-              <li class="header-item">
-              	<%= link_to "投稿一覧", posts_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-              	<%= link_to "MYページ", member_path(current_member), class: "header-link" %>
-              </li>
-              <li class="header-item">
-              	<%= link_to "ありがとう", thanks_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-              	<%= link_to "新規投稿", new_post_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-              	<%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "header-link" %>
-              </li>
-            </ul>
-          </nav>
         </div>
+        <nav class="header-nav">
+          <ul>
+            <li class="header-item">
+            	<%= link_to "投稿一覧", posts_path, class: "header-link" %>
+            </li>
+            <li class="header-item">
+            	<%= link_to "MYページ", member_path(current_member), class: "header-link" %>
+            </li>
+            <li class="header-item">
+            	<%= link_to "ありがとう", thanks_path, class: "header-link" %>
+            </li>
+            <li class="header-item">
+            	<%= link_to "新規投稿", new_post_path, class: "header-link" %>
+            </li>
+            <li class="header-item">
+            	<%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "header-link" %>
+            </li>
+          </ul>
+        </nav>
       </div>
-</header>
+    </div>
+  </header>
 <% else %>
-<header>
-	<div class="header-area">
-        <div class="header-inner">
-          <div class="header-logo">
-            <div class="header-log-link">
-              <div class="header-logo-mark"></div>
-        				<div class="header-logo-text">社名</div>
-            </div>
+  <header>
+  	<div class="header-area">
+      <div class="header-inner">
+        <div class="header-logo">
+          <div class="header-log-link">
+            <div class="header-logo-mark"></div>
+            <div class="header-logo-text">株式会社 gh</div>
           </div>
-          <nav class="header-nav">
-            <ul>
-              <li class="header-item">
-              	<%= link_to "about", about_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-              	<%= link_to "ログイン", new_member_session_path, class: "header-link" %>
-              </li>
-            </ul>
-          </nav>
         </div>
+        <nav class="header-nav">
+          <ul>
+            <li class="header-item">
+            	<%= link_to "about", about_path, class: "header-link" %>
+            </li>
+            <li class="header-item">
+            	<%= link_to "ログイン", new_member_session_path, class: "header-link" %>
+            </li>
+          </ul>
+        </nav>
       </div>
-</header>
+    </div>
+  </header>
 <% end %>

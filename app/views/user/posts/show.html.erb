@@ -30,24 +30,22 @@
         <div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %>
       </div>
     </div>
-
     <div>
       <hr class="hr-text" data-content="コメント一覧"><!--区切り線-->
       <% @post.post_comments.each do |post_comment| %>
-      <div class="comment-box">
-        <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle  member_img" %>
-        <%= post_comment.member.first_name +  post_comment.member.last_name %>
-
-        <p class="comment-text">
-          <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
-        </p>
-         <span class="content-top_right">
-          <%= post_comment.created_at.strftime('%F %T') %>
-          <% if post_comment.member_id == current_member.id %>
-            <%= link_to "", post_post_comment_path(post_comment.post, post_comment), class: "fas fa-trash-alt icon-trash" ,method: :delete,"data-confirm" => "本当に消しますか？" %>
-          <% end %>
-        </span>
-      </div>
+        <div class="comment-box">
+          <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle  member_img" %>
+          <%= post_comment.member.first_name +  post_comment.member.last_name %>
+          <p class="comment-text">
+            <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+          </p>
+          <div class="content-top_right">
+            <%= post_comment.created_at.strftime('%F %T') %>
+            <% if post_comment.member_id == current_member.id %>
+              <%= link_to "", post_post_comment_path(post_comment.post, post_comment), class: "fas fa-trash-alt icon-trash" ,method: :delete,"data-confirm" => "本当に消しますか？" %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
     <hr class="hr-text" data-content="コメント入力"><!--区切り線-->
@@ -57,6 +55,5 @@
         <%= f.submit "送信", class: "button" %>
       <% end %>
     </div>
-
   </div>
 </div>

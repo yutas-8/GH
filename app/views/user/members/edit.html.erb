@@ -1,6 +1,5 @@
 <div class="row">
   <h3 class="form-group col-xs-8 col-xs-offset-3">MY情報編集</h3>
-
   <%= form_with model:@member, local:true do |f| %>
     <div class="form-group col-xs-8 col-xs-offset-3">
       <%= f.label :姓 %><br />
@@ -30,5 +29,4 @@
       <%= f.submit "編集終わり", class: "button" %>
     </div>
   <% end %>
-
 </div>
