@@ -6,7 +6,7 @@ class User::ThanksController < ApplicationController
     @thanks = Thank.page(params[:page]).reverse_order
     @thank = Thank.new
     @members = Member.all
-    @member_name_list = {} # hash 連想配列
+    @member_name_list = {} # 空の連想配列を作成し下記の処理を代入
     @members.each do |member|
       fullname = "#{member.first_name} #{member.last_name}" # セレクトボックスでfullname表示
       @member_name_list[fullname] = member.id # fullnameとidを紐付ける
