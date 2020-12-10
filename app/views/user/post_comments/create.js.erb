@@ -1,3 +1,3 @@
-$(".post_<%= @post.id %> .comment_counts").html("<div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %>");
+$(".post_<%= @post.id %> .comment_counts").html("<%= @post.post_comments.count %>");
 $(".post_comments").html("<%= j(render "user/post_comments/index", post: @post) %>");
 $("#post_comment_comment").val("");
