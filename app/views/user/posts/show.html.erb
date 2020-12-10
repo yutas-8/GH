@@ -27,30 +27,16 @@
       <div class="content-bottom_right">
         <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
         <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
-        <div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %>
+        <div class="comment_counts"><div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %></div>
       </div>
     </div>
     <div>
       <hr class="hr-text" data-content="コメント一覧"><!--区切り線-->
-      <% @post.post_comments.each do |post_comment| %>
-        <div class="comment-box">
-          <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle  member_img" %>
-          <%= post_comment.member.first_name +  post_comment.member.last_name %>
-          <p class="comment-text">
-            <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
-          </p>
-          <div class="content-top_right">
-            <%= post_comment.created_at.strftime('%F %T') %>
-            <% if post_comment.member_id == current_member.id %>
-              <%= link_to "", post_post_comment_path(post_comment.post, post_comment), class: "fas fa-trash-alt icon-trash" ,method: :delete,"data-confirm" => "本当に消しますか？" %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <div class="post_comments"><%= render "user/post_comments/index", post: @post %></div>
     </div>
     <hr class="hr-text" data-content="コメント入力"><!--区切り線-->
     <div class="form-group">
-      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+      <%= form_with model:[@post, @post_comment] do |f| %>
         <%= f.text_area :comment, placeholder: "リアクションをする", size: "10x3", class: "form-control-static col-xs-12" %>
         <%= f.submit "送信", class: "button" %>
       <% end %>

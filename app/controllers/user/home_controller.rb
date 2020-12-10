@@ -38,3 +38,15 @@ class User::HomeController < ApplicationController
 
   def about; end
 end
+
+# Member.joins(:to_thanks) # Thank TableをJoinする
+#       .merge(Thank.where("strftime('%m', thanks.created_at) = '?'", Time.zone.now.month)) ## 今月のrecordにしぼる
+#       .group(:to_id) ## to_idでgrouping
+#       .select('members.*, count(to_id) as count_to') ## memberのすべてのカラムとgroupingされたto_idのcountをselect
+#       .order('count_to DESC') ## to_idのcountの降順にならびかえ
+
+# Member.joins(:from_thanks)
+#       .merge(Thank.where("strftime('%m', thanks.created_at) = '?'", Time.zone.now.month))
+#       .group(:from_id)
+#       .select('members.*, count(from_id) as count_from')
+#       .order('count_from DESC')
