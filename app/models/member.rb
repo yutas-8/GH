@@ -17,6 +17,15 @@ class Member < ApplicationRecord
   has_many :praises, dependent: :destroy
   has_many :cheerings, dependent: :destroy
 
+  def self.thanks_ranking_received_this_month
+    # Thank TableをJoinする→今月のrecordにしぼる→to_idでgrouping→memberのすべてのカラムとgroupingされたto_idのcountをselect→to_idのcountの降順にならびかえ
+    joins(:to_thanks)
+      .merge(Thank.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month))
+      .group(:to_id)
+      .select("members.*, count(to_id) as count_to")
+      .order("count_to DESC")
+  end
+
   # 退職memberはログイン出来ない
   def active_for_authentication?
     super && (self.is_delete == false)

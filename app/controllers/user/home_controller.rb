@@ -31,10 +31,17 @@ class User::HomeController < ApplicationController
     @thanks = Thank.where(to_id: current_member.id).order(created_at: :desc).limit(5)
       # ありがとうのランキング
     @from_thank_ranks = Member.find(@this_month_thanks.group(:from_id).order("count(from_id) desc").limit(3).pluck(:from_id))
-    @to_thank_ranks = Member.find(@this_month_thanks.group(:to_id).order("count(to_id) desc").limit(3).pluck(:to_id))
+    @to_thank_ranks = Member.thanks_ranking_received_this_month.limit(3)
     # 投稿
     @posts = Post.order(created_at: :desc).limit(5)
   end
 
   def about; end
 end
+
+# 贈った
+# Member.joins(:from_thanks)
+#       .merge(Thank.where("strftime('%m', thanks.created_at) = '?'", Time.zone.now.month))
+#       .group(:from_id)
+#       .select('members.*, count(from_id) as count_from')
+#       .order('count_from DESC')
