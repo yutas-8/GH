@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-4">
-    <%= render "layouts/post-index", posts: @posts %>
+    <%= render "layouts/search_form" %>
+    <%= render "layouts/post_index", posts: @posts %>
     <%= paginate @posts %>
   </div>
 </div>
