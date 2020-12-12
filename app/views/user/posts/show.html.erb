@@ -27,7 +27,7 @@
       <div class="content-bottom_right">
         <div class="praise-btn icon"><%= render "user/praises/praise-btn", post: @post %></div>
         <div class="cheering-btn icon"><%= render "user/cheerings/cheering-btn", post: @post %></div>
-        <div class="comment_counts"><div class="far fa-comment-dots icon"></div><%= @post.post_comments.count %></div>
+        <div class="far fa-comment-dots icon"></div><div class="comment_counts"><%= @post.post_comments.count %></div>
       </div>
     </div>
     <div>
