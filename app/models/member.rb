@@ -26,6 +26,14 @@ class Member < ApplicationRecord
       .order("count_to DESC")
   end
 
+  def self.thanks_ranking_given_this_month
+    joins(:from_thanks)
+      .merge(Thank.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month))
+      .group(:from_id)
+      .select("members.*, count(from_id) as count_from")
+      .order("count_from DESC")
+  end
+
   # 退職memberはログイン出来ない
   def active_for_authentication?
     super && (self.is_delete == false)

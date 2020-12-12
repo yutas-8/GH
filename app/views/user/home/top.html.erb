@@ -10,7 +10,7 @@
     <h3>ありがとう(直近5件)</h3>
     <p class="thank-text">
       《今日のありがとう<%= @today_thanks.count %>件 ,
-      今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @month_to_month_thanks %>）》
+      今月のありがとう<%= @this_month_thanks.count %>件（前月比 : <%= @this_month_thanks.count - @prev_month_thanks.count %>）》
     </p>
     <%= render "layouts/thank_index", thanks: @thanks %>
   </div>
@@ -26,7 +26,7 @@
           <tr>
             <th class="col-xs-3">第<%= i %>位</th>
             <td class="col-xs-7"><%= from.first_name + " " + from.last_name %></td>
-            <td class="col-xs-2"><%= from.from_thanks.count %></td>
+            <td class="col-xs-2"><%= from.count_from %></td>
           </tr>
         <% end %>
       </table>
