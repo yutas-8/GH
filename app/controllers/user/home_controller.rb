@@ -31,7 +31,7 @@ class User::HomeController < ApplicationController
     @thanks = Thank.where(to_id: current_member.id).order(created_at: :desc).limit(5)
       # ありがとうのランキング
     @from_thank_ranks = Member.find(@this_month_thanks.group(:from_id).order("count(from_id) desc").limit(3).pluck(:from_id))
-    @to_thank_ranks = Member.find(@this_month_thanks.group(:to_id).order("count(to_id) desc").limit(3).pluck(:to_id))
+    @to_thank_ranks = Member.thanks_ranking_received_this_month.limit(3)
     # 投稿
     @posts = Post.order(created_at: :desc).limit(5)
   end
@@ -39,12 +39,7 @@ class User::HomeController < ApplicationController
   def about; end
 end
 
-# Member.joins(:to_thanks) # Thank TableをJoinする
-#       .merge(Thank.where("strftime('%m', thanks.created_at) = '?'", Time.zone.now.month)) ## 今月のrecordにしぼる
-#       .group(:to_id) ## to_idでgrouping
-#       .select('members.*, count(to_id) as count_to') ## memberのすべてのカラムとgroupingされたto_idのcountをselect
-#       .order('count_to DESC') ## to_idのcountの降順にならびかえ
-
+# 贈った
 # Member.joins(:from_thanks)
 #       .merge(Thank.where("strftime('%m', thanks.created_at) = '?'", Time.zone.now.month))
 #       .group(:from_id)
