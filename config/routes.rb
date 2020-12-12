@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resource :cheerings, only: [:create, :destroy]
       resource :praises, only: [:create, :destroy]
     end
+    get "search" => "searches#search"
   end
 
   namespace :admin do
