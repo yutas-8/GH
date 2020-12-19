@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-3 content-box">
     <div class= "content-member_name">
-      <%= attachment_image_tag @member, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg", class: "img-circle" %>
+      <%= attachment_image_tag @member, :profile_image, format: "jpeg", size: "60x60", fallback: "no_image.jpg", class: "img-circle" %>
     </div>
     <% if @member.id == current_member.id %>
       <div>貰ったありがとう：<%= link_to @member.to_thanks.count, tos_path %></div>

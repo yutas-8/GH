@@ -1,6 +1,6 @@
 <% post.post_comments.each do |post_comment| %>
   <div class="comment-box">
-    <%= attachment_image_tag post_comment.member, :profile_image, :fill, 40, 40, format: "jpeg", fallback: "no_image.jpg", class: "img-circle  member_img" %>
+    <%= attachment_image_tag post_comment.member, :profile_image, format: "jpeg", size: "40x40", fallback: "no_image.jpg", class: "img-circle  member_img" %>
     <%= post_comment.member.first_name +  post_comment.member.last_name %>
     <p class="comment-text">
       <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
