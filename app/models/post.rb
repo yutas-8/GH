@@ -21,4 +21,7 @@ class Post < ApplicationRecord
       @posts = Post.all
     end
   end
+
+  validates :title, presence: true
+  validates :body, presence: true
 end

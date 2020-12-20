@@ -38,4 +38,10 @@ class Member < ApplicationRecord
   def active_for_authentication?
     super && (self.is_delete == false)
   end
+
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+  validates :encrypted_password, length: { minimum: 6 }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end

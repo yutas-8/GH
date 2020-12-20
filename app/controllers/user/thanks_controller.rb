@@ -17,11 +17,17 @@ class User::ThanksController < ApplicationController
     @member = Member.find(params[:thank][:member_id])
     @thank = current_member.from_thanks.new(thank_params)
     @thank.to_id = @member.id
-    if @thank.from_id == @thank.to_id # 自分にありがとうを送れないようにする
-      redirect_to "/"
-    else
-      @thank.save
+    if @thank.save
       redirect_to thanks_path(current_member)
+    else
+      @thanks = Thank.page(params[:page]).reverse_order
+      @members = Member.all
+      @member_name_list = {} # 空の連想配列を作成し下記の処理を代入
+      @members.each do |member|
+        fullname = "#{member.first_name} #{member.last_name}" # セレクトボックスでfullname表示
+        @member_name_list[fullname] = member.id # fullnameとidを紐付ける
+      end
+      render :index
     end
   end
 
@@ -37,11 +43,16 @@ class User::ThanksController < ApplicationController
 
   def update
     @thank = Thank.find(params[:id])
-    if @thank.from_id == current_member.id
-      @thank.update(thank_params)
-      redirect_to thanks_path(current_member)
-    else
+    if @thank.update(thank_params)
       redirect_to thanks_path
+    else
+      @members = Member.all
+      @member_name_list = {}
+      @members.each do |member|
+        fullname = "#{member.first_name} #{member.last_name}"
+        @member_name_list[fullname] = member.id
+      end
+      render :edit
     end
   end
 
@@ -49,8 +60,11 @@ class User::ThanksController < ApplicationController
     @thank = Thank.find(params[:id])
     return unless @thank.from_id == current_member.id
 
-    @thank.destroy
-    redirect_to thanks_path(current_member)
+    if @thank.destroy
+      redirect_to thanks_path(current_member)
+    else
+      render :index
+    end
   end
 
   def tos
@@ -64,7 +78,7 @@ class User::ThanksController < ApplicationController
   private
 
     def thank_params
-      params.require(:thank).permit(:body)
+      params.require(:thank).permit(:body, :to_id)
     end
 
     def correct_member

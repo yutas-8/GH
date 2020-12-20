@@ -1,4 +1,5 @@
 <div class="row">
+  <%= render "layouts/error_message", model: @thank %>
   <h3 class="form-group col-xs-9 col-xs-offset-3">ありがとうを編集</h3>
   <%= form_with model: @thank, local: true do |f| %>
     <div class="form-group col-xs-9 col-xs-offset-3">
