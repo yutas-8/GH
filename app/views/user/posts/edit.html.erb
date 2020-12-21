@@ -1,4 +1,5 @@
 <div class="row">
+  <%= render "layouts/error_message", model: @post %>
   <h3 class="form-group col-xs-8 col-xs-offset-3">投稿編集</h3>
   <%= form_with model: @post, local:true do |f| %>
     <div class="form-group col-xs-8 col-xs-offset-3">
@@ -11,7 +12,7 @@
       <%= f.attachment_field :image %>
     </div>
     <div class="form-group col-xs-2 col-xs-offset-5">
-      <%= f.submit "完了", class: "button" %>
+      <%= f.submit " 更新", class: "button" %>
     </div>
   <% end %>
 </div>

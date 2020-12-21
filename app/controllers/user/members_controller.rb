@@ -12,14 +12,17 @@ class User::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    @member.update(member_params)
-    redirect_to member_path(current_member)
+    if @member.update(member_params)
+      redirect_to member_path(current_member)
+    else
+      render :edit
+    end
   end
 
   private
 
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :birthday, :introduction, :profile_image)
+      params.require(:member).permit(:first_name, :last_name, :birthday, :introduction, :profile_image, :email)
     end
 
     def correct_member

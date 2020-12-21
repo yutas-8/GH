@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable
   attachment :profile_image
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -38,4 +38,10 @@ class Member < ApplicationRecord
   def active_for_authentication?
     super && (self.is_delete == false)
   end
+
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+  validates :encrypted_password, length: { minimum: 6 }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end
