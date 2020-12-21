@@ -8,11 +8,11 @@ class User::HomeController < ApplicationController
     # 本番環境とローカル環境で使える構文に変換
     if Rails.env.production?
       @birthday_members = Member.
-                          where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = '?'", Time.zone.now.month).
+                          where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = ?", Time.zone.now.month.to_s.rjust(2, "0")).
                           select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
                           order("day")
       @next_birthday_members = Member.
-                               where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = '?'", Time.zone.now.next_month.month).
+                               where("date_format(ADDTIME(birthday, '09:00:00'), '%m') = ?", Time.zone.now.next_month.month.to_s.rjust(2, "0")).
                                select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
                                order("day")
     else
