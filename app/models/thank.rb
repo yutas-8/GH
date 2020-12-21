@@ -1,7 +1,7 @@
 class Thank < ApplicationRecord
   belongs_to :from, class_name: "Member"
   belongs_to :to, class_name: "Member"
-  validates :to_id, presence: true
+  # validates :to_id, presence: true 3行目で必須になっている
   validate :cannot_send_it_to_myseif
   validates :body, presence: true
 

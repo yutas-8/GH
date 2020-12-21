@@ -14,9 +14,7 @@ class User::ThanksController < ApplicationController
   end
 
   def create
-    @member = Member.find(params[:thank][:member_id])
     @thank = current_member.from_thanks.new(thank_params)
-    @thank.to_id = @member.id
     if @thank.save
       redirect_to thanks_path(current_member)
     else

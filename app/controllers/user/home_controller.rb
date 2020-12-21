@@ -17,13 +17,14 @@ class User::HomeController < ApplicationController
                                order("day")
     else
       @birthday_members = Member.
-                          where("strftime('%m', datetime(birthday, '+9 hours')) = '?'", Time.zone.now.month).
+                          where("strftime('%m', datetime(birthday, '+9 hours')) = ?", Time.zone.now.month.to_s.rjust(2, "0")).
                           select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
                           order("day")
       @next_birthday_members = Member.
-                               where("strftime('%m', datetime(birthday, '+9 hours')) = '?'", Time.zone.now.next_month.month).
+                               where("strftime('%m', datetime(birthday, '+9 hours')) = ?", Time.zone.now.next_month.month.to_s.rjust(2, "0")).
                                select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
                                order("day")
+
     end
     @thanks = Thank.where(to_id: current_member.id).order(created_at: :desc).limit(5)
       # ありがとうのランキング

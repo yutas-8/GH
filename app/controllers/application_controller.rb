@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthday])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :profile_image_id, :introduction, :birthday])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :profile_image_id, :introduction, :birthday, :email])
     end
 
   # ログイン後の遷移するページ管理者と分ける
