@@ -16,10 +16,8 @@ class User::HomeController < ApplicationController
                                select(:first_name, :last_name, :birthday, "date_format(ADDTIME(birthday, '09:00:00'), '%d') as day").
                                order("day")
     else
-      @birthday_members = Member.
-                          where("strftime('%m', datetime(birthday, '+9 hours')) = ?", Time.zone.now.month.to_s.rjust(2, "0")).
-                          select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
-                          order("day")
+      @birthday_members = Member.birthday_this_month
+
       @next_birthday_members = Member.
                                where("strftime('%m', datetime(birthday, '+9 hours')) = ?", Time.zone.now.next_month.month.to_s.rjust(2, "0")).
                                select(:first_name, :last_name, :birthday, "strftime('%d', datetime(birthday, '+9 hours')) as day").
