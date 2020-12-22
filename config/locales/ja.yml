@@ -9,21 +9,22 @@ ja:
       truncate: "..."
   activerecord:
     models:
-      member: メンバー
-      post: 投稿
-      thank: ありがとう
+      member: "メンバー"
+      post: "投稿"
+      thank: "ありがとう"
     attributes:
       member:
-        first_name: 姓
-        last_name: 名
-        email: メールアドレス
-        encrypted_password: パスワード
+        first_name: "姓"
+        last_name: "名"
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
       post:
-        title: タイトル
-        body: 内容
+        title: "タイトル"
+        body: "内容"
       thank:
-        from_id: 自分
-        body: ありがとうの内容
+        from_id: "自分"
+        to: "送る相手"
+        body: "ありがとうの内容"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -1,17 +1,17 @@
+<%= render "layouts/error_message", model: @post %>
 <div class="row">
-  <%= render "layouts/error_message", model: @post %>
-  <h3 class="form-group col-xs-8 col-xs-offset-3">新規投稿</h3>
+  <h3 class="form-group col-xs-9 col-xs-offset-3">新規投稿</h3>
   <%= form_with model: @post, local:true do |f| %>
-    <div class="form-group col-xs-8 col-xs-offset-3">
+    <div class="form-group col-xs-9 col-xs-offset-3">
       <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control-static col-xs-8" %>
     </div>
-    <div class="form-group col-xs-8 col-xs-offset-3">
+    <div class="form-group col-xs-9 col-xs-offset-3">
       <%= f.text_area :body, autofocus: true, placeholder: "内容", size: "20x10", class: "form-control-static col-xs-8" %>
     </div>
-    <div class="form-group col-xs-8 col-xs-offset-3">
+    <div class="form-group col-xs-9 col-xs-offset-3">
       <%= f.attachment_field :image %>
     </div>
-    <div class="form-group col-xs-2 col-xs-offset-5">
+    <div class="button_position">
       <%= f.submit "投稿", class: "button" %>
     </div>
   <% end %>

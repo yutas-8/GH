@@ -127,6 +127,10 @@ a:hover{
   color:#000080;
 }
 
+.button_position {
+  text-align: center;
+}
+
 .button {
   display       : inline-block;
   border-radius : 5%;
@@ -244,3 +248,28 @@ header {
   bottom: 10px;
 }
 
+// flashメッセージ
+.notifications {
+  color: white;
+  text-align: center;
+}
+
+.notice {
+  background-color: #00bfff;
+}
+
+.alert {
+  background-color: #ff7f50;
+}
+
+// バリデーション
+#error_message {
+  color: white;
+  text-align: center;
+  background-color: #ff7f50;
+  padding: 1px;
+}
+
+.error_message_list {
+  list-style: none;
+}
