@@ -13,8 +13,9 @@ class User::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to member_path(current_member)
+      redirect_to member_path(current_member), notice: "更新しました。"
     else
+      flash.now[:alert] = "更新失敗しました。"
       render :edit
     end
   end
