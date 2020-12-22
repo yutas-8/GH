@@ -3,7 +3,7 @@
   <h3 class="form-group col-xs-9 col-xs-offset-3">ありがとうを編集</h3>
   <%= form_with model: @thank, local: true do |f| %>
     <div class="form-group col-xs-9 col-xs-offset-3">
-      <%= f.select(:member_id, @member_name_list, {include_blank: @thank.to.first_name + " " + @thank.to.last_name}, {class: "form-control-static bootstrap-date"}) %>
+      <%= f.select(:to_id, @member_name_list, {include_blank: @thank.to.first_name + " " + @thank.to.last_name}, {class: "form-control-static bootstrap-date"}) %>
     </div>
     <div class="form-group col-xs-9 col-xs-offset-3">
       <%= f.text_area :body, autofocus: true, placeholder: "どんな感謝を送りますか？", size: "5x10", class: "form-control-static col-xs-8"  %>

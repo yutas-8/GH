@@ -18,12 +18,11 @@ class Member < ApplicationRecord
   has_many :cheerings, dependent: :destroy
 
   def self.thanks_ranking_received_this_month
-    # Thank TableをJoinする→今月のrecordにしぼる→to_idでgrouping→memberのすべてのカラムとgroupingされたto_idのcountをselect→to_idのcountの降順にならびかえ
-    joins(:to_thanks)
-      .merge(Thank.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month))
-      .group(:to_id)
-      .select("members.*, count(to_id) as count_to")
-      .order("count_to DESC")
+    joins(:to_thanks) # Thank TableをJoinする
+      .merge(Thank.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month)) # 今月のrecordにしぼる
+      .group(:to_id) # to_idでgrouping
+      .select("members.*, count(to_id) as count_to") # memberのすべてのカラムとgroupingされたto_idのcountをselect
+      .order("count_to DESC") # to_idのcountの降順にならびかえ
   end
 
   def self.thanks_ranking_given_this_month

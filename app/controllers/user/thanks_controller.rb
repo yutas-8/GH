@@ -1,55 +1,34 @@
 class User::ThanksController < ApplicationController
   before_action :authenticate_member!
   before_action :correct_member, only: [:edit, :update]
+  before_action :member_name_list, only: [:index, :create, :edit, :update]
 
   def index
     @thanks = Thank.page(params[:page]).reverse_order
     @thank = Thank.new
-    @members = Member.all
-    @member_name_list = {} # 空の連想配列を作成し下記の処理を代入
-    @members.each do |member|
-      fullname = "#{member.first_name} #{member.last_name}" # セレクトボックスでfullname表示
-      @member_name_list[fullname] = member.id # fullnameとidを紐付ける
-    end
   end
 
   def create
     @thank = current_member.from_thanks.new(thank_params)
     if @thank.save
-      redirect_to thanks_path(current_member)
+      redirect_to thanks_path(current_member), notice: "ありがとうを贈りました^^"
     else
+      flash.now[:alert] = "投稿失敗しました。"
       @thanks = Thank.page(params[:page]).reverse_order
-      @members = Member.all
-      @member_name_list = {} # 空の連想配列を作成し下記の処理を代入
-      @members.each do |member|
-        fullname = "#{member.first_name} #{member.last_name}" # セレクトボックスでfullname表示
-        @member_name_list[fullname] = member.id # fullnameとidを紐付ける
-      end
       render :index
     end
   end
 
   def edit
     @thank = Thank.find(params[:id])
-    @members = Member.all
-    @member_name_list = {}
-    @members.each do |member|
-      fullname = "#{member.first_name} #{member.last_name}"
-      @member_name_list[fullname] = member.id
-    end
   end
 
   def update
     @thank = Thank.find(params[:id])
     if @thank.update(thank_params)
-      redirect_to thanks_path
+      redirect_to thanks_path, notice: "更新しました。"
     else
-      @members = Member.all
-      @member_name_list = {}
-      @members.each do |member|
-        fullname = "#{member.first_name} #{member.last_name}"
-        @member_name_list[fullname] = member.id
-      end
+      flash.now[:alert] = "更新失敗しました。"
       render :edit
     end
   end
@@ -59,8 +38,9 @@ class User::ThanksController < ApplicationController
     return unless @thank.from_id == current_member.id
 
     if @thank.destroy
-      redirect_to thanks_path(current_member)
+      redirect_to thanks_path(current_member), notice: "削除しました。"
     else
+      flash.now[:alert] = "削除できませんでした。"
       render :index
     end
   end
@@ -82,5 +62,14 @@ class User::ThanksController < ApplicationController
     def correct_member
       @thank = Thank.find(params[:id])
       redirect_to thanks_path unless @thank.from == current_member
+    end
+
+    def member_name_list
+      @members = Member.all
+      @member_name_list = {}
+      @members.each do |member|
+        fullname = "#{member.first_name} #{member.last_name}"
+        @member_name_list[fullname] = member.id
+      end
     end
 end
