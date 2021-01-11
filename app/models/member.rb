@@ -33,11 +33,6 @@ class Member < ApplicationRecord
       .order("count_from DESC")
   end
 
-  ##
-  # API name : active_for_authentication
-  # argument : none
-  # return : none
-  # detail process : check for removed users
   # 退職memberはログイン出来ない
   def active_for_authentication?
     super && (self.is_delete == false)
