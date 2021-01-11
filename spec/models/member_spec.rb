@@ -42,6 +42,4 @@ RSpec.describe Member, type: :model do
     expect(@member.errors[:encrypted_password]).to include("は6文字以上で入力してください")
   end
 
-
-
 end
